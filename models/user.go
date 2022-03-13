@@ -80,6 +80,17 @@ func LoginCheck(email string, password string) (string, error) {
 	return token, nil
 }
 
+func GetUserByID(uid uint) (User, error) {
+
+	var u User
+
+	if err := DB.First(&u, uid).Error; err != nil {
+		return u, errors.New("User not found")
+	}
+
+	return u, nil
+}
+
 func (u *User) UpdateUser() (*User, error) {
 
 	var err error = DB.Debug().Save(&u).Error
