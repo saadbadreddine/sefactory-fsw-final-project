@@ -21,3 +21,14 @@ func (s *SportCategory) SaveSport() (*SportCategory, error) {
 
 	return s, nil
 }
+
+func FindAllSports() ([]SportCategory, error) {
+
+	var err error
+	sports := []SportCategory{}
+	err = DB.Debug().Model(&SportCategory{}).Limit(100).Find(&sports).Error
+	if err != nil {
+		return sports, err
+	}
+	return sports, err
+}
