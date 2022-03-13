@@ -95,3 +95,26 @@ func CurrentUser(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"message": "Success", "data": u})
 }
+
+func Refresh(c *gin.Context) {
+
+	user_id, err := token.ExtractTokenID(c)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	user_type, err := token.ExtractTokenUserType(c)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	token, err := token.GenerateToken(uint(user_id), uint(user_type))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"token": token})
+}
