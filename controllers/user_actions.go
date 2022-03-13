@@ -86,3 +86,30 @@ func EditPost(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"message": "Post updated!"})
 }
+
+type DeletePostRequest struct {
+	PostID uint `json:"post_id"`
+}
+
+func RemovePost(c *gin.Context) {
+
+	var input DeletePostRequest
+
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	user_id, err := token.ExtractTokenID(c)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := models.DeletePost(input.PostID, user_id); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Deleted!"})
+}
