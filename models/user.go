@@ -79,3 +79,14 @@ func LoginCheck(email string, password string) (string, error) {
 
 	return token, nil
 }
+
+func (u *User) UpdateUser() (*User, error) {
+
+	var err error = DB.Debug().Save(&u).Error
+
+	if err != nil {
+		return &User{}, err
+	}
+
+	return u, nil
+}
