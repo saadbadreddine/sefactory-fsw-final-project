@@ -54,3 +54,16 @@ func (p *Post) UpdatePost() (*Post, error) {
 
 	return p, nil
 }
+
+func DeletePost(post_id uint, user_id uint) error {
+
+	result := DB.Debug().Where("id = ?", post_id).
+		Where("user_id = ?", user_id).
+		Delete(&Post{})
+
+	if result.RowsAffected == 0 {
+		return errors.New("no rows affected")
+	}
+
+	return nil
+}
