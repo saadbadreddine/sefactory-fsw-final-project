@@ -17,3 +17,14 @@ type Post struct {
 	Latitude  string        `json:"latitude" gorm:"not null;default:null"`
 	Longitude string        `json:"longitude" gorm:"not null;default:null"`
 }
+
+func (p *Post) SavePost() (*Post, error) {
+
+	var err error = DB.Debug().Create(&p).Error
+
+	if err != nil {
+		return &Post{}, err
+	}
+
+	return p, nil
+}
