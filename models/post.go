@@ -67,3 +67,16 @@ func DeletePost(post_id uint, user_id uint) error {
 
 	return nil
 }
+
+func FindAllPosts() ([]Post, error) {
+
+	var err error
+	posts := []Post{}
+
+	err = DB.Debug().Model(&Post{}).Limit(100).Find(&posts).Error
+	if err != nil {
+		return posts, err
+	}
+
+	return posts, err
+}
