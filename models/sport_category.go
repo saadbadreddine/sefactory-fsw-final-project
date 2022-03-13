@@ -32,3 +32,14 @@ func FindAllSports() ([]SportCategory, error) {
 	}
 	return sports, err
 }
+
+func GetSportByID(sport_id uint) (SportCategory, error) {
+
+	var s SportCategory
+
+	if err := DB.First(&s, sport_id).Error; err != nil {
+		return s, errors.New("User not found")
+	}
+
+	return s, nil
+}
