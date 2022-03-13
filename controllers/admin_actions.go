@@ -27,3 +27,24 @@ func CreateSportCategory(c *gin.Context) {
 	c.JSON(http.StatusOK,
 		gin.H{"message": "Noice you did it! Nuevo Sport Category Created!!"})
 }
+
+func CreateUserType(c *gin.Context) {
+
+	var input models.UserType
+
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	ut := models.UserType{}
+	ut.Role = input.Role
+
+	if _, err := ut.SaveUserType(); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK,
+		gin.H{"message": "Noice you did it! Nuevo User Type Created!!"})
+}
