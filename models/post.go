@@ -80,3 +80,14 @@ func FindAllPosts() ([]Post, error) {
 
 	return posts, err
 }
+
+func GetPostsByUserID(user_id uint) ([]Post, error) {
+
+	p := []Post{}
+
+	if err := DB.Where("user_id", user_id).Find(&p).Error; err != nil {
+		return p, errors.New("post not found")
+	}
+
+	return p, nil
+}
