@@ -22,3 +22,31 @@ type User struct {
 	Gender     string   `json:"gender" gorm:"size:100"`
 	AboutMe    string   `json:"about_me" gorm:"size:255"`
 }
+
+func (u *User) SaveUser() (*User, error) {
+
+	var err error = DB.Debug().Create(&u).Error
+
+	if err != nil {
+		return &User{}, err
+	}
+
+	return u, nil
+}
+
+func (u *User) BeforeSave(*gorm.DB) error {
+
+	// turn password into hash
+	hashedPassword, err := bcrypt.
+		GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
+	if err != nil {
+		return err
+	}
+
+	u.Password = string(hashedPassword)
+
+	// remove spaces
+	u.Email = html.EscapeString(strings.TrimSpace(u.Email))
+
+	return nil
+}
