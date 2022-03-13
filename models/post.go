@@ -91,3 +91,14 @@ func GetPostsByUserID(user_id uint) ([]Post, error) {
 
 	return p, nil
 }
+
+func GetPostByID(post_id uint) (Post, error) {
+
+	p := Post{}
+
+	if err := DB.First(&p, post_id).Error; err != nil {
+		return p, errors.New("post not found")
+	}
+
+	return p, nil
+}
