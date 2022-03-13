@@ -43,3 +43,14 @@ func GetSportByID(sport_id uint) (SportCategory, error) {
 
 	return s, nil
 }
+
+func (s *SportCategory) DeleteSport() (*SportCategory, error) {
+
+	var err error = DB.Debug().Delete(&s).Error
+
+	if err != nil {
+		return &SportCategory{}, err
+	}
+
+	return s, nil
+}
