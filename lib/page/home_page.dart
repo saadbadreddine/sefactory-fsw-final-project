@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:hustle_app/page/map_page.dart';
 
+import '/page/map_page.dart';
 import '/page/test_env_page.dart';
 
 class Home extends StatefulWidget {
