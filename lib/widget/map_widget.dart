@@ -33,10 +33,11 @@ class _MapState extends State<Map> with WidgetsBindingObserver {
   Future _setMapStyle() async {
     final controller = await _controller.future;
     final theme = WidgetsBinding.instance.window.platformBrightness;
-    if (theme == Brightness.dark)
+    if (theme == Brightness.dark) {
       controller.setMapStyle(_darkMapStyle);
-    else
+    } else {
       controller.setMapStyle(_lightMapStyle);
+    }
   }
 
   @override
