@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../model/login_model.dart';
-import '../page/login_page.dart';
+import '../utils/storage.dart';
 
 class LoginService {
   Future<LoginResponse> login(LoginRequest requestModel) async {
@@ -36,4 +36,26 @@ class RefreshTokenService {
       throw Exception('Unauthorized');
     }
   }
+}
+
+Future<String> getToken() async {
+  String token = await storage.read(key: 'jwt') ?? '';
+
+  return token;
+}
+
+getTokenFutureString() async {
+  String tokenString = await getToken();
+  return tokenString;
+}
+
+Future<String> getFirebaseToken() async {
+  String firebaseToken = await storage.read(key: 'firebase_token') ?? '';
+
+  return firebaseToken;
+}
+
+getFirebaseTokenFutureString() async {
+  String firebaseTokenString = await getFirebaseToken();
+  return firebaseTokenString;
 }
