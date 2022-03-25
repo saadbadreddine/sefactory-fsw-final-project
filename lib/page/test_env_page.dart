@@ -53,12 +53,12 @@ class _TestEnvState extends State<TestEnv> {
                 child: DefaultTextStyle(
                     style: Theme.of(context).textTheme.bodyMedium!,
                     textAlign: TextAlign.center,
-                    child: Text('JWT: $_firebaseToken'))),
+                    child: Text('JWT: $_jwt'))),
             const SizedBox(height: 10),
             DefaultTextStyle(
                 style: Theme.of(context).textTheme.bodyMedium!,
                 textAlign: TextAlign.center,
-                child: Text('Firebase: $_jwt')),
+                child: Text('Firebase: $_firebaseToken')),
           ]),
         ),
       ),
