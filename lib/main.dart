@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'dart:io';
 
+import 'package:hustle_app/page/splash_page.dart';
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
