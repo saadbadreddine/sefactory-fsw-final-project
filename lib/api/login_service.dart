@@ -18,3 +18,22 @@ class LoginService {
     }
   }
 }
+
+class RefreshTokenService {
+  Future<RefreshTokenResponse> refresh(String token) async {
+    String uri = 'https://192.168.1.4:4000/api/auth/refresh';
+    final response = await http.get(Uri.parse(uri), headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+
+    if (response.statusCode == 200 || response.statusCode == 400) {
+      return RefreshTokenResponse.fromJson(
+        json.decode(response.body),
+      );
+    } else {
+      throw Exception('Unauthorized');
+    }
+  }
+}
