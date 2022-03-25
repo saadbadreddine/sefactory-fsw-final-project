@@ -32,3 +32,15 @@ class LoginResponse {
         error: json["error"] ?? "");
   }
 }
+
+class RefreshTokenResponse {
+  final String token;
+  final String error;
+
+  RefreshTokenResponse({required this.token, required this.error});
+
+  factory RefreshTokenResponse.fromJson(Map<String, dynamic> json) {
+    return RefreshTokenResponse(
+        token: json["token"] ?? "", error: json["error"] ?? "");
+  }
+}
