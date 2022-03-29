@@ -39,21 +39,24 @@ func Post(c *gin.Context) {
 	p.Latitude = input.Latitude
 	p.Longitude = input.Longitude
 
-	if _, err := p.SavePost(); err != nil {
+	var pid uint
+
+	_, pid, errr := p.SavePost()
+	if errr != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Posted successfully!"})
+	c.JSON(http.StatusOK, gin.H{"message": "Posted successfully!", "data": pid})
 }
 
 type EditPostInput struct {
 	ID        uint   `json:"id" binding:"required"`
-	SportID   uint   `json:"sport_id,omitempty"`
-	Time      string `json:"time,omitempty"`
+	SportID   uint   `json:"sport_id"`
+	Time      string `json:"time"`
 	Message   string `json:"message"`
-	Latitude  string `json:"latitude,omitempty"`
-	Longitude string `json:"longitude,omitempty"`
+	Latitude  string `json:"latitude"`
+	Longitude string `json:"longitude"`
 }
 
 func EditPost(c *gin.Context) {
