@@ -9,24 +9,24 @@ import (
 type Post struct {
 	gorm.Model
 	UserID    uint
-	User      User          `json:"-" gorm:"foreignKey:UserID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
+	User      User          `json:"" gorm:"foreignKey:UserID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
 	SportID   uint          `json:"sport_id"`
-	Sport     SportCategory `json:"-" gorm:"foreignKey:SportID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
+	Sport     SportCategory `json:"" gorm:"foreignKey:SportID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
 	Time      string        `json:"time" gorm:"not null"`
 	Message   string        `json:"message" gorm:"size:255;not null"`
-	Latitude  string        `json:"latitude" gorm:"not null;default:null"`
+	Latitude  string        `json:"latitude" gorm:"not null"`
 	Longitude string        `json:"longitude" gorm:"not null"`
 }
 
-func (p *Post) SavePost() (*Post, error) {
+func (p *Post) SavePost() (*Post, uint, error) {
 
 	var err error = DB.Debug().Create(&p).Error
 
 	if err != nil {
-		return &Post{}, err
+		return &Post{}, 0, err
 	}
 
-	return p, nil
+	return p, p.ID, nil
 }
 
 func (p *Post) UpdatePost() (*Post, error) {
@@ -34,7 +34,7 @@ func (p *Post) UpdatePost() (*Post, error) {
 	result := DB.Model(&Post{}).
 		Where("id = ?", p.ID).
 		Where("user_id = ?", p.UserID).
-		First(&p)
+		First(&Post{})
 
 	if result.Error == gorm.ErrRecordNotFound {
 		return &Post{}, errors.New("invalid request")
@@ -44,9 +44,8 @@ func (p *Post) UpdatePost() (*Post, error) {
 
 	err := DB.Model(&Post{}).
 		Where("id = ?", p.ID).
-		Where("user_id = ?", p.UserID).
-		Omit("user_id, created_at").
-		Save(&p).Error
+		Updates(Post{SportID: p.SportID, Message: p.Message, Time: p.Time,
+			Latitude: p.Latitude, Longitude: p.Longitude}).Error
 
 	if err != nil {
 		return &Post{}, err
@@ -62,7 +61,7 @@ func DeletePost(post_id uint, user_id uint) error {
 		Delete(&Post{})
 
 	if result.RowsAffected == 0 {
-		return errors.New("no rows affected")
+		return errors.New("invalid request")
 	}
 
 	return nil
@@ -73,7 +72,7 @@ func FindAllPosts() ([]Post, error) {
 	var err error
 	posts := []Post{}
 
-	err = DB.Debug().Model(&Post{}).Limit(100).Find(&posts).Error
+	err = DB.Debug().Preload("User").Preload("Sport").Model(&Post{}).Limit(100).Find(&posts).Error
 	if err != nil {
 		return posts, err
 	}
