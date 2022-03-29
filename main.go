@@ -10,5 +10,6 @@ func main() {
 	models.ConnectDatabase()
 
 	r := router.NewRouter()
-	r.Run()
+	r.RunTLS(":8080", "./localhost.crt", "./localhost.key")
+
 }
