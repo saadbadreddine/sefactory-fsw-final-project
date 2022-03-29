@@ -28,7 +28,7 @@ func Login(c *gin.Context) {
 	u.Email = creds.Email
 	u.Password = creds.Password
 
-	token, firebase_token, err := models.LoginCheck(u.Email, u.Password)
+	token, firebase_id, err := models.LoginCheck(u.Email, u.Password)
 
 	if token == "Email not registered" {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Email not registered"})
@@ -41,7 +41,7 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"token": token, "firebase_token": firebase_token})
+	c.JSON(http.StatusOK, gin.H{"token": token, "firebase_id": firebase_id})
 }
 
 type RegisterInput struct {
