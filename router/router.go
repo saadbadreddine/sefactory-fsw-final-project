@@ -17,12 +17,12 @@ func NewRouter() *gin.Engine {
 	protected.Use(middlewares.JwtAuthMiddleware())
 	protected.GET("/user", controllers.CurrentUser)
 	protected.GET("/refresh", controllers.Refresh)
+	protected.POST("/update-profile", controllers.EditProfile)
 	protected.POST("/post", controllers.Post)
 	protected.POST("/remove-post", controllers.RemovePost)
 	protected.GET("/get-posts", controllers.GetAllPosts)
 	protected.GET("/get-my-posts", controllers.GetMyPosts)
 	protected.POST("/update-post", controllers.EditPost)
-	protected.POST("/update-profile", controllers.EditProfile)
 
 	protected_admin := r.Group("/api/auth/admin")
 	protected_admin.Use(middlewares.JwtAdminMiddleware())

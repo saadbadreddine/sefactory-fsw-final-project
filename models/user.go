@@ -13,17 +13,17 @@ import (
 
 type User struct {
 	gorm.Model
-	UserTypeID    uint      `gorm:"default:2"`
-	UserType      UserType  `json:"-" gorm:"foreignKey:UserTypeID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
-	Email         string    `json:"email" gorm:"size:100;not null;unique"`
-	Password      string    `json:"-" gorm:"size:255;not null;"`
-	FirstName     string    `json:"first_name" gorm:"size:100;not null"`
-	LastName      string    `json:"last_name" gorm:"size:100;not null"`
-	DOB           string    `json:"dob"`
-	Gender        string    `json:"gender" gorm:"size:100"`
-	AboutMe       string    `json:"about_me" gorm:"size:255"`
-	FirebaseToken uuid.UUID `json:"firebase_token"`
-	AvatarURL     string    `json:"avatar_url" gorm:"size:255;default:https://ca.slack-edge.com/T0NC4C7NK-U039444J2UR-g1e75ab176a1-512"`
+	UserTypeID uint      `gorm:"default:2"`
+	UserType   UserType  `json:"-" gorm:"foreignKey:UserTypeID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+	Email      string    `json:"email" gorm:"size:100;not null;unique"`
+	Password   string    `json:"-" gorm:"size:255;not null;"`
+	FirstName  string    `json:"first_name" gorm:"size:100;not null"`
+	LastName   string    `json:"last_name" gorm:"size:100;not null"`
+	DOB        string    `json:"dob"`
+	Gender     string    `json:"gender" gorm:"size:100"`
+	AboutMe    string    `json:"about_me" gorm:"size:255"`
+	FirebaseID uuid.UUID `json:"firebase_id"`
+	AvatarURL  string    `json:"avatar_url" gorm:"size:255;default:https://ca.slack-edge.com/T0NC4C7NK-U039444J2UR-g1e75ab176a1-512"`
 }
 
 func (u *User) SaveUser() (*User, error) {
@@ -48,7 +48,7 @@ func (u *User) BeforeSave(*gorm.DB) error {
 
 	u.Password = string(hashedPassword)
 
-	u.FirebaseToken, _ = uuid.NewRandom()
+	u.FirebaseID, _ = uuid.NewRandom()
 
 	// remove spaces
 	u.Email = html.EscapeString(strings.TrimSpace(u.Email))
@@ -98,13 +98,13 @@ func LoginCheck(email string, password string) (string, uuid.UUID, error) {
 		return "", uuid.UUID{}, err
 	}
 
-	firebase_token := u.FirebaseToken
+	firebase_id := u.FirebaseID
 	token, err := token.GenerateToken(uint(u.ID), uint(u.UserTypeID))
 	if err != nil {
 		return "", uuid.UUID{}, err
 	}
 
-	return token, firebase_token, nil
+	return token, firebase_id, nil
 }
 
 func GetUserByID(uid uint) (User, error) {
