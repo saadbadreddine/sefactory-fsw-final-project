@@ -4,8 +4,8 @@ go 1.13
 
 require (
 	github.com/gin-gonic/gin v1.7.7
-	github.com/go-playground/validator v9.31.0+incompatible // indirect
-	github.com/go-playground/validator/v10 v10.10.1 // indirect
+
+	github.com/go-playground/validator/v10 v10.10.1 
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-cmp v0.5.7 // indirect
