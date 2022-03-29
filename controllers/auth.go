@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/go-playground/validator/v10"
 	"github.com/saadbadreddine/fsw-final-project-backend/models"
 	"github.com/saadbadreddine/fsw-final-project-backend/utils/token"
 )
@@ -27,7 +28,7 @@ func Login(c *gin.Context) {
 	u.Email = creds.Email
 	u.Password = creds.Password
 
-	token, err := models.LoginCheck(u.Email, u.Password)
+	token, firebase_token, err := models.LoginCheck(u.Email, u.Password)
 
 	if token == "Email not registered" {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Email not registered"})
@@ -40,19 +41,21 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"token": token})
+	c.JSON(http.StatusOK, gin.H{"token": token, "firebase_token": firebase_token})
 }
 
 type RegisterInput struct {
 	FirstName string `json:"first_name" binding:"required"`
 	LastName  string `json:"last_name" binding:"required"`
-	Email     string `json:"email" binding:"required,email"`
-	Password  string `json:"password" binding:"required,max=16,min=6"`
-	Age       uint8  `json:"age"`
-	Gender    string `json:"gender" validate:"oneof=female male"`
+	Email     string `json:"email" binding:"required,email" validate:"email"`
+	Password  string `json:"password" binding:"required,max=50,min=8" validate:"max=50,min=6"`
+	DOB       string `json:"dob" binding:"required"`
+	Gender    string `json:"gender" binding:"required" validate:"oneof=female male other"`
 }
 
 func Register(c *gin.Context) {
+
+	validate := validator.New()
 
 	var input RegisterInput
 
@@ -61,11 +64,19 @@ func Register(c *gin.Context) {
 		return
 	}
 
+	validation_err := validate.Struct(input)
+	if validation_err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": validation_err.Error()})
+		return
+	}
+
 	u := models.User{}
 	u.FirstName = input.FirstName
 	u.LastName = input.LastName
 	u.Email = input.Email
 	u.Password = input.Password
+	u.DOB = input.DOB
+	u.Gender = input.Gender
 
 	_, err := u.SaveUser()
 
@@ -75,6 +86,46 @@ func Register(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "Registered successfully!"})
+}
+
+type EditProfileInput struct {
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+	Email     string `json:"email"`
+	Password  string `json:"password"`
+	AboutMe   string `json:"about_me"`
+	AvatarURL string `json:"avatar_url"`
+}
+
+func EditProfile(c *gin.Context) {
+
+	var input EditProfileInput
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	user_id, err := token.ExtractTokenID(c)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	u := models.User{}
+
+	u.FirstName = input.FirstName
+	u.LastName = input.LastName
+	u.Email = input.Email
+	u.Password = input.Password
+	u.AvatarURL = input.AvatarURL
+	u.AboutMe = input.AboutMe
+
+	if _, err := u.UpdateUser(user_id); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Profile updated!"})
 }
 
 func CurrentUser(c *gin.Context) {
