@@ -19,16 +19,16 @@ class LoginRequest {
 
 class LoginResponse {
   final String token;
-  final String firebaseToken;
+  final String firebaseID;
   final String error;
 
   LoginResponse(
-      {required this.token, required this.firebaseToken, required this.error});
+      {required this.token, required this.firebaseID, required this.error});
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(
         token: json["token"] ?? "",
-        firebaseToken: json["firebase_token"] ?? "",
+        firebaseID: json["firebase_id"] ?? "",
         error: json["error"] ?? "");
   }
 }
