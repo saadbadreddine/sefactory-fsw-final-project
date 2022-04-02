@@ -1,7 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
-const _widthConstraints = BoxConstraints(maxWidth: 400);
+import 'package:hustle_app/utils/storage.dart';
+import 'package:hustle_app/widget/appbar_widget.dart';
 
 class TestEnv extends StatefulWidget {
   const TestEnv({Key? key}) : super(key: key);
@@ -11,30 +11,18 @@ class TestEnv extends StatefulWidget {
 }
 
 class _TestEnvState extends State<TestEnv> {
-  final _textEditingController = TextEditingController();
-  String? _jwt = '';
-  String? _firebaseToken = '';
-
-  @override
-  void dispose() {
-    _textEditingController.dispose();
-    super.dispose();
-  }
+  static const _widthConstraints = BoxConstraints(maxWidth: 400);
 
   @override
   void initState() {
     super.initState();
-    _jwt = dotenv.env['JWT_TOKEN'];
-    _firebaseToken = dotenv.env['FIREBASE_TOKEN'];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Test'),
-        automaticallyImplyLeading: false,
-      ),
+      resizeToAvoidBottomInset: false,
+      appBar: const CustomAppBar(title: 'Test'),
       body: Center(
         child: Container(
           constraints: _widthConstraints,
@@ -44,25 +32,49 @@ class _TestEnvState extends State<TestEnv> {
               height: 100,
               color: Theme.of(context).colorScheme.primary,
             ),
-            TextField(
-              controller: _textEditingController,
-              decoration: const InputDecoration(),
-            ),
             Container(
                 margin: const EdgeInsets.only(top: 20),
                 child: DefaultTextStyle(
                     style: Theme.of(context).textTheme.bodyMedium!,
                     textAlign: TextAlign.center,
-                    child: Text('JWT: $_jwt'))),
+                    child: Text('JWT: $jwtToken'))),
             const SizedBox(height: 10),
             DefaultTextStyle(
                 style: Theme.of(context).textTheme.bodyMedium!,
                 textAlign: TextAlign.center,
-                child: Text('Firebase: $_firebaseToken')),
+                child: Text('Firebase: $firebaseID')),
           ]),
         ),
       ),
-      resizeToAvoidBottomInset: false,
+      floatingActionButton: SizedBox(
+        //width: 70.0,
+        //height: 70.0,
+        child: FloatingActionButton(
+          onPressed: () {
+            createDocument();
+          },
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          child: Icon(Icons.create,
+              color: Theme.of(context).colorScheme.onSecondary /*size: 30*/
+              ),
+        ),
+      ),
     );
+  }
+
+  Future createDocument() async {
+    final refMessage = FirebaseFirestore.instance
+        .collection('chats')
+        .doc('6dVs6GsoaXiJIzN7ybRU')
+        .collection('messages')
+        .doc();
+    await refMessage.set({'message': 'Testin dis', 'user_id': firebaseID});
+
+    final refConnection = FirebaseFirestore.instance.collection('chats').doc();
+    await refConnection.set({
+      'sender_id': firebaseID,
+      'receiver_id': '',
+      'is_accepted': false,
+    });
   }
 }
