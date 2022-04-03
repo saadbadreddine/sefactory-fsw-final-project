@@ -41,13 +41,13 @@ class Post {
   }
 
   Marker toMarker(
-      String firstName,
-      String lastName,
+      String _firstName,
+      String _lastName,
       String sport,
       String time,
       String _firebaseToken,
       String imgURL,
-      String email,
+      String _email,
       BuildContext context) {
     Marker marker = Marker(
         markerId: firebaseToken == _firebaseToken
@@ -68,8 +68,8 @@ class Post {
                     return PostCard(
                       context: context,
                       firebaseToken: _firebaseToken,
-                      firstName: firstName,
-                      lastName: lastName,
+                      firstName: _firstName,
+                      lastName: _lastName,
                       time: time,
                       message: message,
                       sport: sport,
@@ -78,10 +78,10 @@ class Post {
                       isOnMap: true,
                       onDeletedPost: () {},
                       onRequestSent: () {},
-                      email: email,
-                      myFirstName: '',
-                      myLastName: '',
-                      myPhoneNumber: '',
+                      email: _email,
+                      myFirstName: firstName,
+                      myLastName: lastName,
+                      myPhoneNumber: phoneNumber,
                     );
                   },
                 );
