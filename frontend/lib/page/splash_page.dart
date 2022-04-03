@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -77,6 +78,17 @@ class _SplashState extends State<Splash> {
     String? token = await messaging.getToken(
       vapidKey: "BGpdLRs......",
     );
+
+    userCredential = await FirebaseAuth.instance.signInAnonymously();
+
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (userCredential == null) {
+        print('User is currently signed out!');
+      } else {
+        print('User is signed in!');
+      }
+    });
+
     print('User granted permission: ${settings.authorizationStatus}');
     print(token);
   }
