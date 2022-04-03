@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart' as f;
 import 'package:hustle_app/page/edit_profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hustle_app/utils/storage.dart';
@@ -23,7 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
     user = User(
         aboutMe: ' ',
         email: ' ',
-        firebaseID: ' ',
+        firebaseToken: ' ',
         firstName: ' ',
         lastName: ' ',
         imageURL: ' ',
@@ -87,6 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                               builder: (context) =>
                                                   const Login()),
                                           (Route<dynamic> route) => false));
+                                  f.FirebaseAuth.instance.signOut();
                                 },
                                 child: Text(
                                   'Yes',
