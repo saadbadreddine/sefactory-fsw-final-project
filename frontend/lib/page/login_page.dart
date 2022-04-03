@@ -163,16 +163,15 @@ class LoginState extends State<Login> {
                                               await storage.write(
                                                   key: 'jwt',
                                                   value: value.token),
+                                              jwtToken = value.token,
                                               await storage.write(
                                                   key: 'email',
                                                   value: loginRequest.email),
-                                              jwtToken = value.token,
                                               email = loginRequest.email,
-                                              if (value.firebaseToken == '')
+                                              if (value.firebaseToken == '' ||
+                                                  value.firebaseToken !=
+                                                      firebaseToken)
                                                 {
-                                                  await storage.write(
-                                                      key: 'firebase_token',
-                                                      value: firebaseToken),
                                                   editProfileRequest
                                                           .firebaseToken =
                                                       firebaseToken,

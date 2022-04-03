@@ -19,43 +19,39 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   String _tokenString = '';
+  u.EditProfileRequest editProfileRequest = u.EditProfileRequest();
+  ProfileService profileService = ProfileService();
 
   @override
   void initState() {
     super.initState();
-
-    _getTokenString().then((value) {
-      if (_tokenString == '') {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const Login()));
-      } else {
-        RefreshTokenService loginService = RefreshTokenService();
-        loginService.refresh(_tokenString).then((value) async => {
-              if (value.error == 'Unauthorized')
-                {
-                  await storage.deleteAll().then((value) {
+    _initializeFirebase().then((result) {
+      _getStorageVariables().then((value) {
+        if (_tokenString == '') {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => const Login()));
+        } else {
+          RefreshTokenService loginService = RefreshTokenService();
+          loginService.refresh(_tokenString).then((value) async => {
+                if (value.error == 'Unauthorized')
+                  {
+                    await storage.deleteAll().then((value) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Login()));
+                    }),
+                  }
+                else if (value.token != '')
+                  {
+                    await storage.write(key: 'jwt', value: value.token),
+                    jwtToken = value.token,
                     Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => const Login()));
-                  }),
-                }
-              else if (value.token != '')
-                {
-                  _initializeFirebase().then((value) {
-                    u.EditProfileRequest editProfileRequest =
-                        u.EditProfileRequest();
-                    editProfileRequest.firebaseToken = firebaseToken;
-                    ProfileService profileService = ProfileService();
-                    profileService.editProfile(jwtToken!, editProfileRequest);
-                  }),
-                  await storage.write(key: 'jwt', value: value.token),
-                  await storage.write(
-                      key: 'firebase_token', value: firebaseToken),
-                  jwtToken = value.token,
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => const Home())),
-                }
-            });
-      }
+                        MaterialPageRoute(builder: (context) => const Home())),
+                  }
+              });
+        }
+      });
     });
   }
 
@@ -67,8 +63,9 @@ class _SplashState extends State<Splash> {
                 color: Theme.of(context).colorScheme.onSurface)));
   }
 
-  _getTokenString() async {
+  _getStorageVariables() async {
     _tokenString = await getToken();
+    email = await getEmail();
     //_firebaseToken = await getfirebaseToken();
   }
 
@@ -99,6 +96,7 @@ class _SplashState extends State<Splash> {
     });
 
     firebaseToken = token;
+    await storage.write(key: 'firebase_token', value: firebaseToken);
 
     print('User granted permission: ${settings.authorizationStatus}');
     print(token);
