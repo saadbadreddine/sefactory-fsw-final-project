@@ -21,12 +21,15 @@ class _SplashState extends State<Splash> {
   String _tokenString = '';
   u.EditProfileRequest editProfileRequest = u.EditProfileRequest();
   ProfileService profileService = ProfileService();
+  u.User? me;
 
   @override
   void initState() {
     super.initState();
+
     _initializeFirebase().then((result) {
       _getStorageVariables().then((value) {
+        getProfileInfo();
         if (_tokenString == '') {
           Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => const Login()));
@@ -99,5 +102,18 @@ class _SplashState extends State<Splash> {
     await storage.write(key: 'firebase_token', value: firebaseToken);
 
     print('User granted permission: ${settings.authorizationStatus}');
+  }
+
+  getProfileInfo() async {
+    ProfileService profileService;
+    profileService = ProfileService();
+    profileService.getProfile(jwtToken!).then((value) {
+      setState(() {
+        me = u.User.fromJson(value.data);
+      });
+      firstName = me!.firstName;
+      lastName = me!.lastName;
+      phoneNumber = me!.phoneNumber;
+    });
   }
 }
