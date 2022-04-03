@@ -122,6 +122,7 @@ func EditProfile(c *gin.Context) {
 	u.Password = input.Password
 	u.AvatarURL = input.AvatarURL
 	u.AboutMe = input.AboutMe
+	u.FirebaseToken = input.FirebaseToken
 
 	if _, err := u.UpdateUser(user_id); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
