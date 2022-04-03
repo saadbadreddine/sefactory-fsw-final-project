@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hustle_app/utils/storage.dart';
+import 'package:hustle_app/widget/post_card_widget.dart';
 
 class Post {
   int postID;
@@ -40,7 +41,7 @@ class Post {
   }
 
   Marker toMarker(String firstName, String lastName, String sport, String time,
-      String _firebaseID, BuildContext context) {
+      String _firebaseID, String imgURL, BuildContext context) {
     Marker marker = Marker(
         markerId: firebaseID == _firebaseID
             ? MarkerId(postID.toString())
@@ -57,59 +58,19 @@ class Post {
                   context: context,
                   barrierDismissible: false,
                   builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text(
-                        '$firstName $lastName',
-                        style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w500),
-                      ),
-                      content: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            const SizedBox(height: 10),
-                            Center(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'Sport: $sport',
-                                    style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    'Time: $time',
-                                    style: const TextStyle(
-                                      fontSize: 15,
-                                      height: 1.4,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 30),
-                            Text(
-                              message,
-                              style: const TextStyle(fontSize: 16, height: 1.4),
-                            ),
-                          ],
-                        ),
-                      ),
-                      actions: <Widget>[
-                        TextButton(
-                          child: const Text('Send Request'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        TextButton(
-                          child: const Text('Dismiss'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
+                    return PostCard(
+                      context: context,
+                      firebaseID: _firebaseID,
+                      firstName: firstName,
+                      lastName: lastName,
+                      time: time,
+                      message: message,
+                      sport: sport,
+                      imageURL: imgURL,
+                      postID: postID,
+                      isOnMap: true,
+                      onDeletedPost: () {},
+                      onRequestSent: () {},
                     );
                   },
                 );
