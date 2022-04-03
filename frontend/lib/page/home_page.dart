@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hustle_app/page/posts_page.dart';
 
+import '/page/posts_page.dart';
+import '/page/requests_page.dart';
 import '/page/map_page.dart';
-import '/page/test_env_page.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
   final screens = [
     const MapPage(),
     const PostsPage(),
-    const TestEnv(),
+    const RequestsPage(),
   ];
 
   @override
