@@ -1,5 +1,5 @@
 class User {
-  String firebaseID;
+  String firebaseToken;
   String firstName;
   String lastName;
   String email;
@@ -9,7 +9,7 @@ class User {
   String gender;
 
   User({
-    required this.firebaseID,
+    required this.firebaseToken,
     required this.firstName,
     required this.lastName,
     required this.email,
@@ -21,7 +21,7 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-        firebaseID: json["firebase_id"] ?? '',
+        firebaseToken: json["firebase_token"] ?? '',
         firstName: json["first_name"] ?? '',
         lastName: json["last_name"] ?? '',
         email: json["email"] ?? '',
@@ -66,6 +66,7 @@ class EditProfileRequest {
   String? email;
   String? aboutMe;
   String? imageURL;
+  String? firebaseToken;
 
   EditProfileRequest({
     this.firstName,
@@ -73,6 +74,7 @@ class EditProfileRequest {
     this.email,
     this.aboutMe,
     this.imageURL,
+    this.firebaseToken,
   });
 
   Map<String, dynamic> toJson() {
@@ -83,6 +85,7 @@ class EditProfileRequest {
       'email': email,
       'about_me': aboutMe,
       'avatar_url': imageURL,
+      'firebase_token': firebaseToken
     };
 
     return map;
