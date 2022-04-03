@@ -145,3 +145,25 @@ func GetMyPosts(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"message": "Success", "data": posts})
 }
+
+func FindUserByEmail(c *gin.Context) {
+
+	var input FindByEmail
+
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	user := models.User{}
+
+	user.Email = input.Email
+
+	u, err := models.GetUserByEmail(input.Email)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": u})
+}

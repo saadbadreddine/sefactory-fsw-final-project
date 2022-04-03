@@ -115,3 +115,15 @@ func GetUserByID(uid uint) (User, error) {
 
 	return u, nil
 }
+
+func GetUserByEmail(email string) (User, error) {
+
+	var u User
+
+	if err := DB.First(&u).Where("email = ?", email).Error; err != nil {
+		return u, errors.New("User not found")
+	}
+
+	return u, nil
+}
+
