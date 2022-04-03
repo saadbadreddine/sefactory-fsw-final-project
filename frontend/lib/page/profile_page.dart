@@ -60,12 +60,46 @@ class _ProfilePageState extends State<ProfilePage> {
                         MaterialStateProperty.all(Theme.of(context).hoverColor),
                   ),
                   onPressed: () {
-                    //exit(0);
-                    deleteStorage().then((value) => Navigator.of(context)
-                        .pushAndRemoveUntil(
-                            MaterialPageRoute(
-                                builder: (context) => const Login()),
-                            (Route<dynamic> route) => false));
+                    {
+                      showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => SizedBox(
+                          width: 300,
+                          height: 400,
+                          child: AlertDialog(
+                            title: const Text('Logout'),
+                            content:
+                                const Text('Are you sure you want to logout?'),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(context, 'Cancel'),
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context, 'Yes');
+
+                                  //exit(0);
+                                  deleteStorage().then((value) =>
+                                      Navigator.of(context).pushAndRemoveUntil(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const Login()),
+                                          (Route<dynamic> route) => false));
+                                },
+                                child: Text(
+                                  'Yes',
+                                  style: TextStyle(
+                                    color: Theme.of(context).colorScheme.error,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }
                   },
                   icon: Icon(
                     Icons.logout,
@@ -133,9 +167,9 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 30),
             Column(
               children: [
-                const Text(
-                  'About me:',
-                  style: TextStyle(
+                Text(
+                  user.aboutMe != "" ? 'About me:' : "",
+                  style: const TextStyle(
                     fontSize: 20,
                     height: 1.4,
                     fontWeight: FontWeight.bold,
