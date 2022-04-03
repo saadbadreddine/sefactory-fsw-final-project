@@ -101,8 +101,9 @@ class MapState extends State<Map> with WidgetsBindingObserver {
             newUser.lastName,
             newSport.sport,
             posts[i].time,
-            newUser.firebaseID,
+            newUser.firebaseToken,
             newUser.imageURL,
+            newUser.email,
             context));
         i++;
       }

@@ -10,29 +10,31 @@ class PostCard extends StatefulWidget {
   final String time;
   final String sport;
   final String message;
-  final String firebaseID;
+  final String firebaseToken;
   final BuildContext context;
   final String imageURL;
   final int postID;
   final VoidCallback onDeletedPost;
   final VoidCallback onRequestSent;
   final bool isOnMap;
+  final String? email;
 
-  const PostCard({
-    Key? key,
-    required this.context,
-    required this.firebaseID,
-    required this.firstName,
-    required this.lastName,
-    required this.time,
-    required this.message,
-    required this.sport,
-    required this.imageURL,
-    required this.postID,
-    required this.onDeletedPost,
-    required this.onRequestSent,
-    required this.isOnMap,
-  }) : super(key: key);
+  const PostCard(
+      {Key? key,
+      required this.context,
+      required this.firebaseToken,
+      required this.firstName,
+      required this.lastName,
+      required this.time,
+      required this.message,
+      required this.sport,
+      required this.imageURL,
+      required this.postID,
+      required this.onDeletedPost,
+      required this.onRequestSent,
+      required this.isOnMap,
+      required this.email})
+      : super(key: key);
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -48,7 +50,7 @@ class _PostCardState extends State<PostCard> {
   @override
   void initState() {
     super.initState();
-    if (widget.firebaseID == firebaseID) {
+    if (widget.email == email) {
       _isMine = true;
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -249,25 +251,23 @@ class _PostCardState extends State<PostCard> {
     if (!_isRequested) {
       final refMessage =
           FirebaseFirestore.instance.collection('requests').doc();
-      await refMessage.set({
-        'senderID': firebaseID,
-        'receiverID': widget.firebaseID,
-        'isAccepted': false
-      });
+      await refMessage.set(
+          {'senderID': email, 'receiverID': widget.email, 'isAccepted': false});
     }
   }
 
   checkRequestExists() async {
     QuerySnapshot querySender = await FirebaseFirestore.instance
         .collection('requests')
-        .where('senderID', isEqualTo: firebaseID)
-        .where('receiverID', isEqualTo: widget.firebaseID)
+        .where('senderID', isEqualTo: email)
+        .where('receiverID', isEqualTo: widget.email)
         .get();
-
+    print(firebaseToken);
+    print(widget.firebaseToken);
     QuerySnapshot queryReceiver = await FirebaseFirestore.instance
         .collection('requests')
-        .where('senderID', isEqualTo: widget.firebaseID)
-        .where('receiverID', isEqualTo: firebaseID)
+        .where('senderID', isEqualTo: widget.email)
+        .where('receiverID', isEqualTo: email)
         .get();
     if (this.mounted) {
       setState(() {

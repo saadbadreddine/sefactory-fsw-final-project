@@ -93,7 +93,7 @@ class _PostsPageState extends State<PostsPage> {
                         return PostCard(
                           key: UniqueKey(),
                           context: context,
-                          firebaseID: users[index].firebaseID,
+                          firebaseToken: users[index].firebaseToken,
                           message: posts[index].message,
                           time: posts[index].time,
                           sport: sports[index].sport,
@@ -111,6 +111,7 @@ class _PostsPageState extends State<PostsPage> {
                           onRequestSent: () {
                             setState(() {});
                           },
+                          email: users[index].email,
                         );
                       });
                 }

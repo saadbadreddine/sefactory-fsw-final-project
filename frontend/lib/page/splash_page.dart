@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:hustle_app/api/profile_service.dart';
+import 'package:hustle_app/model/user_model.dart' as u;
 
 import 'home_page.dart';
 import 'login_page.dart';
@@ -17,12 +19,11 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   String _tokenString = '';
-  String _firebaseID = '';
 
   @override
   void initState() {
     super.initState();
-    _initializeFirebase();
+
     _getTokenString().then((value) {
       if (_tokenString == '') {
         Navigator.pushReplacement(
@@ -39,9 +40,17 @@ class _SplashState extends State<Splash> {
                 }
               else if (value.token != '')
                 {
+                  _initializeFirebase().then((value) {
+                    u.EditProfileRequest editProfileRequest =
+                        u.EditProfileRequest();
+                    editProfileRequest.firebaseToken = firebaseToken;
+                    ProfileService profileService = ProfileService();
+                    profileService.editProfile(jwtToken!, editProfileRequest);
+                  }),
                   await storage.write(key: 'jwt', value: value.token),
+                  await storage.write(
+                      key: 'firebase_token', value: firebaseToken),
                   jwtToken = value.token,
-                  firebaseID = _firebaseID,
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => const Home())),
                 }
@@ -60,10 +69,10 @@ class _SplashState extends State<Splash> {
 
   _getTokenString() async {
     _tokenString = await getToken();
-    _firebaseID = await getFirebaseID();
+    //_firebaseToken = await getfirebaseToken();
   }
 
-  _initializeFirebase() async {
+  Future _initializeFirebase() async {
     await Firebase.initializeApp();
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     NotificationSettings settings = await messaging.requestPermission(
@@ -85,9 +94,11 @@ class _SplashState extends State<Splash> {
       if (userCredential == null) {
         print('User is currently signed out!');
       } else {
-        print('User is signed in!');
+        print('User is signed in! ${userCredential!.user!.uid}');
       }
     });
+
+    firebaseToken = token;
 
     print('User granted permission: ${settings.authorizationStatus}');
     print(token);

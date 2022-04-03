@@ -42,7 +42,7 @@ class _TestEnvState extends State<TestEnv> {
             DefaultTextStyle(
                 style: Theme.of(context).textTheme.bodyMedium!,
                 textAlign: TextAlign.center,
-                child: Text('Firebase: $firebaseID')),
+                child: Text('Firebase: $firebaseToken')),
           ]),
         ),
       ),
@@ -68,11 +68,11 @@ class _TestEnvState extends State<TestEnv> {
         .doc('6dVs6GsoaXiJIzN7ybRU')
         .collection('messages')
         .doc();
-    await refMessage.set({'message': 'Testin dis', 'user_id': firebaseID});
+    await refMessage.set({'message': 'Testin dis', 'user_id': firebaseToken});
 
     final refConnection = FirebaseFirestore.instance.collection('chats').doc();
     await refConnection.set({
-      'sender_id': firebaseID,
+      'sender_id': firebaseToken,
       'receiver_id': '',
       'is_accepted': false,
     });

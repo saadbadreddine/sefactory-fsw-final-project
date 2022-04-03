@@ -40,18 +40,25 @@ class Post {
     );
   }
 
-  Marker toMarker(String firstName, String lastName, String sport, String time,
-      String _firebaseID, String imgURL, BuildContext context) {
+  Marker toMarker(
+      String firstName,
+      String lastName,
+      String sport,
+      String time,
+      String _firebaseToken,
+      String imgURL,
+      String email,
+      BuildContext context) {
     Marker marker = Marker(
-        markerId: firebaseID == _firebaseID
+        markerId: firebaseToken == _firebaseToken
             ? MarkerId(postID.toString())
-            : MarkerId("$firebaseID //& ${postID.toString()}"),
+            : MarkerId("$firebaseToken //& ${postID.toString()}"),
         position: LatLng(double.parse(lat), double.parse(long)),
         infoWindow: const InfoWindow(title: ""),
-        icon: firebaseID == _firebaseID
+        icon: firebaseToken == _firebaseToken
             ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure)
             : BitmapDescriptor.defaultMarker,
-        onTap: firebaseID == _firebaseID
+        onTap: firebaseToken == _firebaseToken
             ? () {}
             : () async {
                 return showDialog<void>(
@@ -60,7 +67,7 @@ class Post {
                   builder: (BuildContext context) {
                     return PostCard(
                       context: context,
-                      firebaseID: _firebaseID,
+                      firebaseToken: _firebaseToken,
                       firstName: firstName,
                       lastName: lastName,
                       time: time,
@@ -71,6 +78,7 @@ class Post {
                       isOnMap: true,
                       onDeletedPost: () {},
                       onRequestSent: () {},
+                      email: email,
                     );
                   },
                 );
