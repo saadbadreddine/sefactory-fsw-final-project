@@ -163,7 +163,9 @@ class _PostCardState extends State<PostCard> {
                                       onPressed: !_isRequested
                                           ? () {
                                               createDocument();
+                                              _isRequested = true;
                                               setState(() {});
+                                              widget.onRequestSent();
                                             }
                                           : null,
                                       child: const Text('Send Request',
