@@ -28,7 +28,7 @@ func Login(c *gin.Context) {
 	u.Email = creds.Email
 	u.Password = creds.Password
 
-	token, firebase_id, err := models.LoginCheck(u.Email, u.Password)
+	token, firebase_token, err := models.LoginCheck(u.Email, u.Password)
 
 	if token == "Email not registered" {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Email not registered"})
@@ -41,16 +41,17 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"token": token, "firebase_id": firebase_id})
+	c.JSON(http.StatusOK, gin.H{"token": token, "firebase_token": firebase_token})
 }
 
 type RegisterInput struct {
-	FirstName string `json:"first_name" binding:"required"`
-	LastName  string `json:"last_name" binding:"required"`
-	Email     string `json:"email" binding:"required,email" validate:"email"`
-	Password  string `json:"password" binding:"required,max=50,min=8" validate:"max=50,min=6"`
-	DOB       string `json:"dob" binding:"required"`
-	Gender    string `json:"gender" binding:"required" validate:"oneof=female male other"`
+	FirstName   string `json:"first_name" binding:"required"`
+	LastName    string `json:"last_name" binding:"required"`
+	Email       string `json:"email" binding:"required,email" validate:"email"`
+	Password    string `json:"password" binding:"required,max=50,min=8" validate:"max=50,min=6"`
+	DOB         string `json:"dob" binding:"required"`
+	Gender      string `json:"gender" binding:"required" validate:"oneof=female male other"`
+	PhoneNumber string `json:"phone_number" binding:"required"`
 }
 
 func Register(c *gin.Context) {
@@ -77,6 +78,7 @@ func Register(c *gin.Context) {
 	u.Password = input.Password
 	u.DOB = input.DOB
 	u.Gender = input.Gender
+	u.PhoneNumber = input.PhoneNumber
 
 	_, err := u.SaveUser()
 
@@ -89,12 +91,13 @@ func Register(c *gin.Context) {
 }
 
 type EditProfileInput struct {
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
-	Email     string `json:"email"`
-	Password  string `json:"password"`
-	AboutMe   string `json:"about_me"`
-	AvatarURL string `json:"avatar_url"`
+	FirstName     string `json:"first_name"`
+	LastName      string `json:"last_name"`
+	Email         string `json:"email"`
+	Password      string `json:"password"`
+	AboutMe       string `json:"about_me"`
+	AvatarURL     string `json:"avatar_url"`
+	FirebaseToken string `json:"firebase_token"`
 }
 
 func EditProfile(c *gin.Context) {
