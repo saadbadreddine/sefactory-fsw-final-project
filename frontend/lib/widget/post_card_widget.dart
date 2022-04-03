@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hustle_app/api/firestore_service.dart';
 import 'package:hustle_app/api/post_service.dart';
 import 'package:hustle_app/model/post_model.dart';
 import 'package:hustle_app/utils/storage.dart';
@@ -18,6 +19,9 @@ class PostCard extends StatefulWidget {
   final VoidCallback onRequestSent;
   final bool isOnMap;
   final String? email;
+  final String? myFirstName;
+  final String? myLastName;
+  final String? myPhoneNumber;
 
   const PostCard(
       {Key? key,
@@ -33,7 +37,10 @@ class PostCard extends StatefulWidget {
       required this.onDeletedPost,
       required this.onRequestSent,
       required this.isOnMap,
-      required this.email})
+      required this.email,
+      required this.myFirstName,
+      required this.myLastName,
+      required this.myPhoneNumber})
       : super(key: key);
 
   @override
@@ -156,7 +163,6 @@ class _PostCardState extends State<PostCard> {
                                       onPressed: !_isRequested
                                           ? () {
                                               createDocument();
-                                              _isRequested = true;
                                               setState(() {});
                                             }
                                           : null,
@@ -253,6 +259,10 @@ class _PostCardState extends State<PostCard> {
           FirebaseFirestore.instance.collection('requests').doc();
       await refMessage.set(
           {'senderID': email, 'receiverID': widget.email, 'isAccepted': false});
+
+      await sendNotification(
+          widget.firebaseToken, widget.myFirstName, widget.myLastName);
+      _isRequested = true;
     }
   }
 
@@ -262,8 +272,6 @@ class _PostCardState extends State<PostCard> {
         .where('senderID', isEqualTo: email)
         .where('receiverID', isEqualTo: widget.email)
         .get();
-    print(firebaseToken);
-    print(widget.firebaseToken);
     QuerySnapshot queryReceiver = await FirebaseFirestore.instance
         .collection('requests')
         .where('senderID', isEqualTo: widget.email)
@@ -275,7 +283,6 @@ class _PostCardState extends State<PostCard> {
             ? _isRequested = false
             : _isRequested = true;
       });
-      print(_isRequested);
     }
   }
 }
