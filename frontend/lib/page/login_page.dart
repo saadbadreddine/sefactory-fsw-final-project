@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_svg/svg.dart';
 
+import '../api/profile_service.dart';
 import '../model/login_model.dart';
 import '../api/auth_service.dart';
+import '../model/user_model.dart';
 import '../utils/storage.dart';
 import 'home_page.dart';
 import 'register_page.dart';
@@ -23,6 +25,8 @@ class LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   late LoginRequest loginRequest;
   late bool _isObscure;
+  EditProfileRequest editProfileRequest = EditProfileRequest();
+  ProfileService profileService = ProfileService();
 
   @override
   void initState() {
@@ -160,16 +164,31 @@ class LoginState extends State<Login> {
                                                   key: 'jwt',
                                                   value: value.token),
                                               await storage.write(
-                                                  key: 'firebase_id',
-                                                  value: value.firebaseID),
+                                                  key: 'email',
+                                                  value: loginRequest.email),
                                               jwtToken = value.token,
-                                              firebaseID = value.firebaseID,
-                                              Navigator.pushReplacement(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const Home()),
-                                              ),
+                                              email = loginRequest.email,
+                                              if (value.firebaseToken == '')
+                                                {
+                                                  await storage.write(
+                                                      key: 'firebase_token',
+                                                      value: firebaseToken),
+                                                  editProfileRequest
+                                                          .firebaseToken =
+                                                      firebaseToken,
+                                                  profileService.editProfile(
+                                                      jwtToken!,
+                                                      editProfileRequest)
+                                                }
+                                              else
+                                                {
+                                                  Navigator.pushReplacement(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const Home()),
+                                                  ),
+                                                }
                                             }
                                           else
                                             {
