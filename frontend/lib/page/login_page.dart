@@ -178,16 +178,13 @@ class LoginState extends State<Login> {
                                                   profileService.editProfile(
                                                       jwtToken!,
                                                       editProfileRequest)
-                                                }
-                                              else
-                                                {
-                                                  Navigator.pushReplacement(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            const Home()),
-                                                  ),
-                                                }
+                                                },
+                                              Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const Home()),
+                                              ),
                                             }
                                           else
                                             {
