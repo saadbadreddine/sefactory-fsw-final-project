@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_svg/svg.dart';
 
@@ -60,6 +61,9 @@ class LoginState extends State<Login> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         TextFormField(
+                          inputFormatters: [
+                            FilteringTextInputFormatter.deny(RegExp('[ ]')),
+                          ],
                           decoration: const InputDecoration(
                             icon: Icon(Icons.person),
                             labelText: 'Email',
