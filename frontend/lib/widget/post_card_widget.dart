@@ -52,7 +52,7 @@ class _PostCardState extends State<PostCard> {
       _isMine = true;
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      checkrequestExists();
+      checkRequestExists();
     });
   }
 
@@ -257,7 +257,7 @@ class _PostCardState extends State<PostCard> {
     }
   }
 
-  checkrequestExists() async {
+  checkRequestExists() async {
     QuerySnapshot querySender = await FirebaseFirestore.instance
         .collection('requests')
         .where('senderID', isEqualTo: firebaseID)
