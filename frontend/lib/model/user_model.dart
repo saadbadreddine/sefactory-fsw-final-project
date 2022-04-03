@@ -7,6 +7,7 @@ class User {
   String imageURL;
   String dob;
   String gender;
+  String phoneNumber;
 
   User({
     required this.firebaseToken,
@@ -17,6 +18,7 @@ class User {
     required this.imageURL,
     required this.dob,
     required this.gender,
+    required this.phoneNumber,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -28,7 +30,8 @@ class User {
         aboutMe: json["about_me"] ?? "",
         imageURL: json['avatar_url'] ?? "",
         dob: json['dob'] ?? "",
-        gender: json['gender'] ?? "");
+        gender: json['gender'] ?? "",
+        phoneNumber: json['phone_number']);
   }
 }
 
