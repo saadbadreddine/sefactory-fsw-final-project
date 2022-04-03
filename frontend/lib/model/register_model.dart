@@ -5,15 +5,16 @@ class RegisterRequest {
   String password;
   String dob;
   String gender;
+  String phoneNumber;
 
-  RegisterRequest({
-    required this.firstName,
-    required this.lastName,
-    required this.email,
-    required this.password,
-    required this.dob,
-    required this.gender,
-  });
+  RegisterRequest(
+      {required this.firstName,
+      required this.lastName,
+      required this.email,
+      required this.password,
+      required this.dob,
+      required this.gender,
+      required this.phoneNumber});
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
@@ -23,6 +24,7 @@ class RegisterRequest {
       'password': password.trim(),
       'dob': dob.trim(),
       'gender': gender.trim(),
+      'phone_number': phoneNumber.trim(),
     };
 
     return map;
