@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hustle_app/api/profile_service.dart';
 import 'package:hustle_app/utils/storage.dart';
 import 'package:hustle_app/widget/appbar_widget.dart';
 import 'package:hustle_app/widget/post_card_widget.dart';
@@ -21,6 +22,7 @@ class _PostsPageState extends State<PostsPage> {
   List<Post> posts = [];
   List<User> users = [];
   List<Sport> sports = [];
+  User? me;
 
   Future getPosts() async {
     int i = 0;
@@ -53,6 +55,7 @@ class _PostsPageState extends State<PostsPage> {
   @override
   void initState() {
     super.initState();
+    getProfileInfo();
   }
 
   @override
@@ -112,6 +115,9 @@ class _PostsPageState extends State<PostsPage> {
                             setState(() {});
                           },
                           email: users[index].email,
+                          myFirstName: me!.firstName,
+                          myLastName: me!.lastName,
+                          myPhoneNumber: me!.phoneNumber,
                         );
                       });
                 }
@@ -123,5 +129,15 @@ class _PostsPageState extends State<PostsPage> {
             },
           ),
         ));
+  }
+
+  getProfileInfo() async {
+    ProfileService profileService;
+    profileService = ProfileService();
+    profileService.getProfile(jwtToken!).then((value) {
+      setState(() {
+        me = User.fromJson(value.data);
+      });
+    });
   }
 }

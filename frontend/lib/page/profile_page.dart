@@ -29,7 +29,8 @@ class _ProfilePageState extends State<ProfilePage> {
         lastName: ' ',
         imageURL: ' ',
         dob: ' ',
-        gender: '  ');
+        gender: '  ',
+        phoneNumber: '');
     getProfileInfo();
   }
 

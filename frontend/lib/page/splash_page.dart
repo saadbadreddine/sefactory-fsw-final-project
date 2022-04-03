@@ -99,6 +99,5 @@ class _SplashState extends State<Splash> {
     await storage.write(key: 'firebase_token', value: firebaseToken);
 
     print('User granted permission: ${settings.authorizationStatus}');
-    print(token);
   }
 }

@@ -79,6 +79,9 @@ class Post {
                       onDeletedPost: () {},
                       onRequestSent: () {},
                       email: email,
+                      myFirstName: '',
+                      myLastName: '',
+                      myPhoneNumber: '',
                     );
                   },
                 );
