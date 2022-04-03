@@ -66,7 +66,7 @@ func (u *User) UpdateUser(user_id uint) (*User, error) {
 	err := DB.Debug().Model(&User{}).
 		Where("id = ?", user_id).
 		Updates(User{FirstName: u.FirstName, LastName: u.LastName, Email: u.Email, Password: u.Password,
-			AboutMe: u.AboutMe, AvatarURL: u.AvatarURL}).Error
+			AboutMe: u.AboutMe, AvatarURL: u.AvatarURL, FirebaseToken: u.FirebaseToken}).Error
 
 	if err != nil {
 		return &User{}, err
