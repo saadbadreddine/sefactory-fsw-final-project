@@ -65,10 +65,24 @@ class _PostsPageState extends State<PostsPage> {
             future: Future.wait([getPosts(), getUsers(), getSports()]),
             builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
               if (snapshot.hasError) {
-                return Center(child: Text("${snapshot.error}"));
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Center(
+                      child: Text(
+                    "${snapshot.error}",
+                    style: const TextStyle(fontSize: 16),
+                  )),
+                );
               } else if (snapshot.hasData) {
                 if (snapshot.data![0].length == 0) {
-                  return const Center(child: Text("Nothing to show here ..."));
+                  return const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Center(
+                        child: Text(
+                      "Nothing to show here ...",
+                      style: TextStyle(fontSize: 16),
+                    )),
+                  );
                 } else {
                   var posts = snapshot.data![0] as List<Post>;
                   var users = snapshot.data![1] as List<User>;
@@ -87,10 +101,14 @@ class _PostsPageState extends State<PostsPage> {
                           firstName: users[index].firstName,
                           lastName: users[index].lastName,
                           postID: posts[index].postID,
+                          isOnMap: false,
                           onDeletedPost: () {
                             posts.removeAt(index);
                             users.removeAt(index);
                             sports.removeAt(index);
+                            setState(() {});
+                          },
+                          onRequestSent: () {
                             setState(() {});
                           },
                         );
