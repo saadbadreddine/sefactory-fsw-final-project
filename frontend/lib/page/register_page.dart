@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 import '../api/auth_service.dart';
@@ -44,7 +45,8 @@ class RegisterState extends State<Register> {
         firstName: '',
         lastName: '',
         dob: '',
-        gender: '');
+        gender: '',
+        phoneNumber: '');
     _isObscure = true;
   }
 
@@ -116,6 +118,31 @@ class RegisterState extends State<Register> {
                             },
                           ),
                           TextFormField(
+                            decoration: const InputDecoration(
+                              icon: Icon(Icons.phone),
+                              labelText: 'Phone Number',
+                            ),
+                            keyboardType: TextInputType.phone,
+                            onSaved: (input) =>
+                                registerRequest.phoneNumber = input!,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (value) {
+                              String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+                              RegExp regex = RegExp(pattern);
+                              if (value == null ||
+                                  value.isEmpty ||
+                                  !regex.hasMatch(value)) {
+                                return 'Enter a valid phone number';
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
+                          TextFormField(
+                            inputFormatters: [
+                              FilteringTextInputFormatter.deny(RegExp('[ ]')),
+                            ],
                             decoration: const InputDecoration(
                               icon: Icon(Icons.email),
                               labelText: 'Email',
@@ -202,7 +229,7 @@ class RegisterState extends State<Register> {
                                 icon: Icon(Icons.calendar_month)),
                             maxLines: 1,
                           ),
-                          const SizedBox(height: 20),
+                          const SizedBox(height: 10),
                           Row(
                             children: <Widget>[
                               Expanded(
@@ -242,7 +269,7 @@ class RegisterState extends State<Register> {
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 70.0),
+                            padding: const EdgeInsets.fromLTRB(0, 30, 0, 70),
                             child: SizedBox(
                               width: 130,
                               height: 50,
