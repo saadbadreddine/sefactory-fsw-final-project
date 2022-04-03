@@ -73,8 +73,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       icon: Icon(Icons.person),
                       labelText: 'First Name',
                     ),
-                    onSaved: (input) => setState(() {
-                      widget.user.firstName = input!;
+                    onChanged: (input) => setState(() {
+                      widget.user.firstName = input;
                       _editProfileRequest.firstName = input;
                     }),
                     keyboardType: TextInputType.name,
@@ -98,8 +98,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       labelText: 'Last Name',
                     ),
                     keyboardType: TextInputType.name,
-                    onSaved: (input) => setState(() {
-                      widget.user.lastName = input!;
+                    onChanged: (input) => setState(() {
+                      widget.user.lastName = input;
                       _editProfileRequest.lastName = input;
                     }),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -133,7 +133,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     ),
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: _isObscure,
-                    onSaved: (input) => _editProfileRequest.password = input!,
+                    onChanged: (input) => _editProfileRequest.password = input,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -155,13 +155,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Enter a valid name';
+                        return 'Say something about yourself      (╯°□°)╯︵ ┻━┻ ';
                       } else {
                         return null;
                       }
                     },
-                    onSaved: (input) => setState(() {
-                      widget.user.aboutMe = input!;
+                    onChanged: (input) => setState(() {
+                      widget.user.aboutMe = input;
                       _editProfileRequest.aboutMe = input;
                     }),
                     minLines: 3,
@@ -201,7 +201,21 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           profileService
                               .editProfile(jwtToken!, _editProfileRequest)
                               .then((value) async => {
-                                    if (value.error!.isEmpty)
+                                    if (_editProfileRequest.firstName == null &&
+                                        _editProfileRequest.lastName == null &&
+                                        _editProfileRequest.aboutMe == null &&
+                                        _editProfileRequest.password == null)
+                                      {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                              duration:
+                                                  Duration(milliseconds: 1500),
+                                              content: Text(
+                                                  'Make a change before saving')),
+                                        )
+                                      }
+                                    else if (value.error!.isEmpty)
                                       {
                                         widget.onProfileChanged(),
                                         setState(() {}),
