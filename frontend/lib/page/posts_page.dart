@@ -116,6 +116,7 @@ class _PostsPageState extends State<PostsPage> {
                           myFirstName: firstName,
                           myLastName: lastName,
                           myPhoneNumber: phoneNumber,
+                          myImgURL: imgURL,
                         );
                       });
                 }

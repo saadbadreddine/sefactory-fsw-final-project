@@ -22,26 +22,28 @@ class PostCard extends StatefulWidget {
   final String? myFirstName;
   final String? myLastName;
   final String? myPhoneNumber;
+  final String? myImgURL;
 
-  const PostCard(
-      {Key? key,
-      required this.context,
-      required this.firebaseToken,
-      required this.firstName,
-      required this.lastName,
-      required this.time,
-      required this.message,
-      required this.sport,
-      required this.imageURL,
-      required this.postID,
-      required this.onDeletedPost,
-      required this.onRequestSent,
-      required this.isOnMap,
-      required this.email,
-      required this.myFirstName,
-      required this.myLastName,
-      required this.myPhoneNumber})
-      : super(key: key);
+  const PostCard({
+    Key? key,
+    required this.context,
+    required this.firebaseToken,
+    required this.firstName,
+    required this.lastName,
+    required this.time,
+    required this.message,
+    required this.sport,
+    required this.imageURL,
+    required this.postID,
+    required this.onDeletedPost,
+    required this.onRequestSent,
+    required this.isOnMap,
+    required this.email,
+    required this.myFirstName,
+    required this.myLastName,
+    required this.myPhoneNumber,
+    required this.myImgURL,
+  }) : super(key: key);
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -259,8 +261,15 @@ class _PostCardState extends State<PostCard> {
     if (!_isRequested) {
       final refMessage =
           FirebaseFirestore.instance.collection('requests').doc();
-      await refMessage.set(
-          {'senderID': email, 'receiverID': widget.email, 'isAccepted': false});
+      await refMessage.set({
+        'senderID': email,
+        'receiverID': widget.email,
+        'isAccepted': false,
+        'firebaseToken': widget.firebaseToken,
+        'imgURL': imgURL,
+        'senderFirstName': widget.myFirstName,
+        'senderLastName': widget.myLastName
+      });
 
       await sendNotification(
           widget.firebaseToken, widget.myFirstName, widget.myLastName);

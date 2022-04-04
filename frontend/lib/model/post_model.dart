@@ -46,7 +46,7 @@ class Post {
       String sport,
       String time,
       String _firebaseToken,
-      String imgURL,
+      String _imgURL,
       String _email,
       BuildContext context) {
     Marker marker = Marker(
@@ -73,7 +73,7 @@ class Post {
                       time: time,
                       message: message,
                       sport: sport,
-                      imageURL: imgURL,
+                      imageURL: _imgURL,
                       postID: postID,
                       isOnMap: true,
                       onDeletedPost: () {},
@@ -82,6 +82,7 @@ class Post {
                       myFirstName: firstName,
                       myLastName: lastName,
                       myPhoneNumber: phoneNumber,
+                      myImgURL: imgURL,
                     );
                   },
                 );
