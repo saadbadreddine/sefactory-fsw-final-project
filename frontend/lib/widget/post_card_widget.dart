@@ -271,8 +271,8 @@ class _PostCardState extends State<PostCard> {
         'senderLastName': widget.myLastName
       });
 
-      await sendNotification(
-          widget.firebaseToken, widget.myFirstName, widget.myLastName);
+      await sendNotification(widget.firebaseToken, widget.myFirstName,
+          widget.myLastName, 'Requested your phone number');
       _isRequested = true;
     }
   }
