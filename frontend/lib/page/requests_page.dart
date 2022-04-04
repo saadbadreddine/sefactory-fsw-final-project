@@ -13,6 +13,8 @@ class RequestsPage extends StatefulWidget {
 }
 
 class _RequestsPageState extends State<RequestsPage> {
+  late String senderEmail;
+
   @override
   void initState() {
     super.initState();
@@ -50,6 +52,7 @@ class _RequestsPageState extends State<RequestsPage> {
               (DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data()! as Map<String, dynamic>;
+                senderEmail = data['senderID'];
                 return Card(
                   semanticContainer: true,
                   clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -117,10 +120,10 @@ class _RequestsPageState extends State<RequestsPage> {
                           ],
                         ),
                         const SizedBox(height: 15),
-                        Align(
+                        const Align(
                             child: Text(
                               'Requested your phone number',
-                              style: const TextStyle(fontSize: 16, height: 1.4),
+                              style: TextStyle(fontSize: 16, height: 1.4),
                             ),
                             alignment: Alignment.center),
                         const SizedBox(height: 10),
@@ -133,7 +136,42 @@ class _RequestsPageState extends State<RequestsPage> {
                                 )),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => SizedBox(
+                                  width: 300,
+                                  height: 400,
+                                  child: AlertDialog(
+                                    title: const Text('Alert'),
+                                    content: const Text(
+                                        'Are you sure you want to reject and delete this request?'),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, 'Cancel'),
+                                        child: const Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context, 'OK');
+                                          rejectDeleteRequest(
+                                              senderEmail, email);
+                                        },
+                                        child: Text(
+                                          'OK',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .error,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
                             child: Text('Reject',
                                 style: TextStyle(
                                     fontSize: 15,
@@ -152,4 +190,17 @@ class _RequestsPageState extends State<RequestsPage> {
       ),
     );
   }
+
+  rejectDeleteRequest(senderEmail, email) async {
+    var collection = FirebaseFirestore.instance.collection('requests');
+    var snapshot = await collection
+        .where('senderID', isEqualTo: senderEmail)
+        .where('receiverID', isEqualTo: email)
+        .get();
+    for (var doc in snapshot.docs) {
+      await doc.reference.delete();
+    }
+  }
+
+  acceptedRequest() {}
 }
