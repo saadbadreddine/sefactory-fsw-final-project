@@ -50,15 +50,15 @@ class Post {
       String _email,
       BuildContext context) {
     Marker marker = Marker(
-        markerId: firebaseToken == _firebaseToken
+        markerId: email == _email
             ? MarkerId(postID.toString())
             : MarkerId("$firebaseToken //& ${postID.toString()}"),
         position: LatLng(double.parse(lat), double.parse(long)),
         infoWindow: const InfoWindow(title: ""),
-        icon: firebaseToken == _firebaseToken
+        icon: email == _email
             ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure)
             : BitmapDescriptor.defaultMarker,
-        onTap: firebaseToken == _firebaseToken
+        onTap: email == _email
             ? () {}
             : () async {
                 return showDialog<void>(

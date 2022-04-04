@@ -16,7 +16,7 @@ class DatabaseService {
   }
 }
 
-sendNotification(receiverToken, firstName, lastName) async {
+sendNotification(receiverToken, firstName, lastName, message) async {
   print(receiverToken);
   await http.post(
     Uri.parse('https://fcm.googleapis.com/fcm/send'),
@@ -28,7 +28,7 @@ sendNotification(receiverToken, firstName, lastName) async {
       <String, dynamic>{
         'notification': <String, dynamic>{
           'body': '${firstName} ${lastName}',
-          'title': 'Request Received',
+          'title': message,
         },
         'priority': 'high',
         'data': <String, dynamic>{
