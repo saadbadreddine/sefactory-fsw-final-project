@@ -98,7 +98,7 @@ class _PostCardState extends State<PostCard> {
                           widget.imageURL.toString(),
                           height: 150.0,
                           width: 100.0,
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
