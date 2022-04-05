@@ -128,7 +128,7 @@ class RegisterState extends State<Register> {
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             validator: (value) {
-                              String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+                              String pattern = r'(^(?:[+0]9)?[0-9]{10,13}$)';
                               RegExp regex = RegExp(pattern);
                               if (value == null ||
                                   value.isEmpty ||
@@ -208,8 +208,8 @@ class RegisterState extends State<Register> {
                                   if (value != null) {
                                     //print(date.toIso8601String());
                                     registerRequest.dob = value.toString();
-                                    dateCtl.text =
-                                        DateFormat('dd-MM-yyyy').format(value);
+                                    dateCtl.text = DateFormat('dd - MM - yyyy')
+                                        .format(value);
                                   }
                                 },
                               );
@@ -224,7 +224,7 @@ class RegisterState extends State<Register> {
                             controller: dateCtl,
                             enableInteractiveSelection: false,
                             decoration: const InputDecoration(
-                                labelText: "Date of birth",
+                                labelText: "Date Of Birth",
                                 hintText: "Ex. Insert your dob",
                                 icon: Icon(Icons.calendar_month)),
                             maxLines: 1,
