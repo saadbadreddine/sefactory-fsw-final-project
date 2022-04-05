@@ -29,17 +29,17 @@ class _SplashState extends State<Splash> {
 
     _initializeFirebase().then((result) {
       _getStorageVariables().then((value) {
-        profileService.getProfile(_tokenString).then((value) {
-          me = u.User.fromJson(value.data);
-          firstName = me.firstName;
-          lastName = me.lastName;
-          phoneNumber = me.phoneNumber;
-          imgURL = me.imageURL;
-        });
         if (_tokenString == '') {
           Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => const Login()));
         } else {
+          profileService.getProfile(_tokenString).then((value) {
+            me = u.User.fromJson(value.data);
+            firstName = me.firstName;
+            lastName = me.lastName;
+            phoneNumber = me.phoneNumber;
+            imgURL = me.imageURL;
+          });
           RefreshTokenService loginService = RefreshTokenService();
           loginService.refresh(_tokenString).then((value) async => {
                 if (value.error == 'Unauthorized')
