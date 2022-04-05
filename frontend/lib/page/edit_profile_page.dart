@@ -22,7 +22,8 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  final EditProfileRequest _editProfileRequest = EditProfileRequest();
+  final EditProfileRequest _editProfileRequest =
+      EditProfileRequest(aboutMe: " ");
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
   final ImagePicker _picker = ImagePicker();
