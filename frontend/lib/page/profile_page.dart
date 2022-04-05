@@ -167,6 +167,10 @@ class _ProfilePageState extends State<ProfilePage> {
               'Dob: ' + user.dob,
               style: const TextStyle(fontSize: 16, height: 1.4),
             ),
+            Text(
+              'Phone number: ' + user.phoneNumber,
+              style: const TextStyle(fontSize: 16, height: 1.4),
+            ),
             const SizedBox(height: 30),
             Column(
               children: [
@@ -185,7 +189,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   user.aboutMe,
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 18, height: 1.4),
-                )
+                ),
               ],
             ),
           ],
