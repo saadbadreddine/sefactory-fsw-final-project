@@ -20,10 +20,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
     return AppBar(
       title: Text(widget.title),
       actions: [
-        IconButton(
-          icon: const Icon(Icons.notifications, size: 30),
-          onPressed: () {},
-        ),
         Padding(
           padding: const EdgeInsets.only(right: 5.0),
           child: IconButton(
