@@ -27,8 +27,8 @@ sendNotification(receiverToken, firstName, lastName, message) async {
     body: jsonEncode(
       <String, dynamic>{
         'notification': <String, dynamic>{
-          'body': '${firstName} ${lastName}',
-          'title': message,
+          'body': message,
+          'title': '${firstName} ${lastName}',
         },
         'priority': 'high',
         'data': <String, dynamic>{
