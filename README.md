@@ -4,7 +4,7 @@
 
 > Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.
 
-**[PROJECT PHILOSOPHY](https://github.com/julescript/well_app#-project-philosophy) • [WIREFRAMES](https://github.com/julescript/well_app#-wireframes) • [TECH STACK](https://github.com/julescript/well_app#-tech-stack) • [IMPLEMENTATION](https://github.com/julescript/well_app#-impplementation) • [HOW TO RUN?](https://github.com/julescript/well_app#-how-to-run)**
+**[PROJECT PHILOSOPHY](https://github.com/saadbadreddine/sefactory-fsw-final-project/#-project-philosophy) • [WIREFRAMES](https://github.com/saadbadreddine/sefactory-fsw-final-project#-wireframes) • [TECH STACK](https://github.com/saadbadreddine/sefactory-fsw-final-project#-tech-stack) • [IMPLEMENTATION](https://github.com/saadbadreddine/sefactory-fsw-final-project#-impplementation) • [HOW TO RUN?](https://github.com/saadbadreddine/sefactory-fsw-final-project#-how-to-run)**
 
 </div>
 
@@ -12,15 +12,14 @@
 
 <img src="./readme/title2.svg"/>
 
-> The Well app is a mental health and mindfulness app built on top of the science of positive psychology. The Well app is more than just another meditation or journaling app; it encourages you to enhance and reflect on your day with structured, guided activities.
+> Hustle App is a map based LFG (looking for group) app aimed at sports players build to help people find others around them The Well app is a mental health and mindfulness app built on top of the science of positive psychology. The Well app is more than just another meditation or journaling app; it encourages you to enhance and reflect on your day with structured, guided activities.
 >
 > There are 5 daily tasks that the Well app asks you to complete each day: record 3 gratitudes, write a journal entry, perform 3 acts of kindness, exercise for 20 minutes, and meditate for 15 minutes.
 
 ### User Stories
 
-- As a user, I want to browsse ablums, so that I can find quick links
-- As a user, I want to browsse ablums, so that I can find quick links
-- As a user, I want to browsse ablums, so that I can find quick links
+- As a user, I want to find 2 basketball players around my area, so that me and my team can have a full court game
+- As a user, Karim wants to find a team of basketball planning a game, so that he can join them
 
 <br><br>
 
