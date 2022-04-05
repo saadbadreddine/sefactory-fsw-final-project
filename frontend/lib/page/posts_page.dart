@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hustle_app/api/profile_service.dart';
 import 'package:hustle_app/utils/storage.dart';
 import 'package:hustle_app/widget/appbar_widget.dart';
 import 'package:hustle_app/widget/post_card_widget.dart';
