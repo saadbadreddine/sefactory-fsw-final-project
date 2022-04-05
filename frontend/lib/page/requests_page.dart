@@ -133,6 +133,7 @@ class _RequestsPageState extends State<RequestsPage> {
                           TextButton(
                             onPressed: () {
                               print(data['senderPhoneNumber']);
+                              rejectDeleteRequest(senderEmail, email);
                               launchWhatsApp(data['phoneNumber']);
                             },
                             child: const Text('Accept',
@@ -209,7 +210,7 @@ class _RequestsPageState extends State<RequestsPage> {
 
   launchWhatsApp(phoneNumber) async {
     final link = WhatsAppUnilink(
-      phoneNumber: '96170979734',
+      phoneNumber: '$phoneNumber',
       text: "Hey i saw your request",
     );
     await launch('$link');
