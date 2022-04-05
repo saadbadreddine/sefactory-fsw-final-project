@@ -169,6 +169,18 @@ class LoginState extends State<Login> {
                                                   key: 'email',
                                                   value: loginRequest.email),
                                               email = loginRequest.email,
+                                              profileService
+                                                  .getProfile(jwtToken!)
+                                                  .then((value) {
+                                                u = User.fromJson(value.data);
+                                                firstName = u.firstName;
+                                                lastName = u.lastName;
+                                                phoneNumber = u.phoneNumber;
+                                                imgURL = u.imageURL;
+                                                print(value);
+                                              }),
+                                              print(
+                                                  '$firstName $lastName $phoneNumber'),
                                               if (value.firebaseToken == '' ||
                                                   value.firebaseToken !=
                                                       firebaseToken)
@@ -179,16 +191,6 @@ class LoginState extends State<Login> {
                                                   profileService.editProfile(
                                                       jwtToken!,
                                                       editProfileRequest),
-                                                  profileService
-                                                      .getProfile(jwtToken!)
-                                                      .then((value) {
-                                                    u = User.fromJson(
-                                                        value.data);
-                                                    firstName = u.firstName;
-                                                    lastName = u.lastName;
-                                                    phoneNumber = u.phoneNumber;
-                                                    imgURL = u.imageURL;
-                                                  }),
                                                 },
                                               Navigator.pushReplacement(
                                                 context,
