@@ -27,6 +27,7 @@ class LoginState extends State<Login> {
   late bool _isObscure;
   EditProfileRequest editProfileRequest = EditProfileRequest();
   ProfileService profileService = ProfileService();
+  late User u;
 
   @override
   void initState() {
@@ -177,7 +178,17 @@ class LoginState extends State<Login> {
                                                       firebaseToken,
                                                   profileService.editProfile(
                                                       jwtToken!,
-                                                      editProfileRequest)
+                                                      editProfileRequest),
+                                                  profileService
+                                                      .getProfile(jwtToken!)
+                                                      .then((value) {
+                                                    u = User.fromJson(
+                                                        value.data);
+                                                    firstName = u.firstName;
+                                                    lastName = u.lastName;
+                                                    phoneNumber = u.phoneNumber;
+                                                    imgURL = u.imageURL;
+                                                  }),
                                                 },
                                               Navigator.pushReplacement(
                                                 context,
