@@ -134,7 +134,7 @@ class _RequestsPageState extends State<RequestsPage> {
                             onPressed: () {
                               print(data['senderPhoneNumber']);
                               rejectDeleteRequest(senderEmail, email);
-                              launchWhatsApp(data['phoneNumber']);
+                              launchWhatsApp(data['senderPhoneNumber']);
                             },
                             child: const Text('Accept',
                                 style: TextStyle(
@@ -209,8 +209,10 @@ class _RequestsPageState extends State<RequestsPage> {
   }
 
   launchWhatsApp(phoneNumber) async {
+    String waPhoneNumber = phoneNumber.replaceFirst('+', '');
+    waPhoneNumber = int.parse(waPhoneNumber).toString();
     final link = WhatsAppUnilink(
-      phoneNumber: '$phoneNumber',
+      phoneNumber: waPhoneNumber,
       text: "Hey i saw your request",
     );
     await launch('$link');
