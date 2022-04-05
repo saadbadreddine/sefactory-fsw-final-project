@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hustle_app/widget/appbar_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 
 import '../api/firestore_service.dart';
 import '../utils/storage.dart';
@@ -122,14 +124,17 @@ class _RequestsPageState extends State<RequestsPage> {
                         const SizedBox(height: 15),
                         const Align(
                             child: Text(
-                              'Requested your phone number',
+                              'Requested to join your game, accept this request to get redirected to whatsapp and plan your game',
                               style: TextStyle(fontSize: 16, height: 1.4),
                             ),
                             alignment: Alignment.center),
                         const SizedBox(height: 10),
                         ButtonBar(children: [
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              print(data['senderPhoneNumber']);
+                              launchWhatsApp(data['phoneNumber']);
+                            },
                             child: const Text('Accept',
                                 style: TextStyle(
                                   fontSize: 15,
@@ -202,5 +207,11 @@ class _RequestsPageState extends State<RequestsPage> {
     }
   }
 
-  acceptedRequest() {}
+  launchWhatsApp(phoneNumber) async {
+    final link = WhatsAppUnilink(
+      phoneNumber: '96170979734',
+      text: "Hey i saw your request",
+    );
+    await launch('$link');
+  }
 }
