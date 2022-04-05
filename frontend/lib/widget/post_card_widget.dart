@@ -268,11 +268,12 @@ class _PostCardState extends State<PostCard> {
         'firebaseToken': widget.firebaseToken,
         'imgURL': imgURL,
         'senderFirstName': widget.myFirstName,
-        'senderLastName': widget.myLastName
+        'senderLastName': widget.myLastName,
+        'senderPhoneNumber': widget.myPhoneNumber
       });
 
       await sendNotification(widget.firebaseToken, widget.myFirstName,
-          widget.myLastName, 'Requested your phone number');
+          widget.myLastName, 'Sent you a request');
       _isRequested = true;
     }
   }
