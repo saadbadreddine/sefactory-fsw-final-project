@@ -23,7 +23,6 @@ func NewRouter() *gin.Engine {
 	protected.GET("/get-posts", controllers.GetAllPosts)
 	protected.GET("/get-my-posts", controllers.GetMyPosts)
 	protected.POST("/update-post", controllers.EditPost)
-	protected.POST("/find-user", controllers.FindUserByEmail)
 
 	protected_admin := r.Group("/api/auth/admin")
 	protected_admin.Use(middlewares.JwtAdminMiddleware())
