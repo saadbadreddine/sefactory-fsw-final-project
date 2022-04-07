@@ -45,9 +45,9 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 - This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
 - This project uses the Gin Web Framework. Gin is a web framework written in [Golang](https://go.dev/). It features a martini-like API with performance that is up to 40 times faster thanks to httprouter.
-- To query and manipulate data from MySQL database, this project uses (GORM)[https://gorm.io/]. GORM is an ORM library for dealing with relational databases, and is developed on top of database/sql package.
-- For RDBMS, this project uses (MySQL)[https://www.mysql.com/].
-- For backend shipping and deployment, this project uses [Docker]. Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers.
+- To query and manipulate data from MySQL database, this project uses [GORM](https://gorm.io/). GORM is an ORM library for dealing with relational databases, and is developed on top of database/sql package.
+- For RDBMS, this project uses [MySQL](https://www.mysql.com/).
+- For backend shipping and deployment, this project uses [Docker](https://www.docker.com/). Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers.
 - For realtime data streams (Requests Screen), this project uses [Firebase Cloud FireStore](https://firebase.google.com/docs/firestore). Cloud Firestore is a flexible, scalable database for mobile, web, and server development from Firebase and Google Cloud.
 - For push notifications, this project uses [Firebase Cloud Messaging](https://firebase.google.com/docs/firestore). Using FCM, you can notify a client app that new email or other data is available to sync. You can send notification messages to drive user re-engagement and retention.
 
