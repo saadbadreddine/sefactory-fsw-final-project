@@ -12,23 +12,22 @@
 
 <img src="./readme/title2.svg"/>
 
-> Hustle app is a map based LFG app aimed at sports player struggling to find teams or individuals to play with in the areas that they live in.
+> Hustle is a map based LFG app aimed at sports player struggling to find teams or individuals to play with in the areas that they live in.
 >
-> Hustle app lets you drop a marker on the map with a sport category of your choosing, the desired time the game will be held, and an announcement message. This marker is then broadcasted and shown to all the users of the app, requests can be sent and once accepted users will be redirected to WhatsApp to plan the game.
+> Hustle app lets you drop a marker on the map with a sport category of your choosing, the desired time the game will be held, and an announcement message. This marker is then broadcasted and shown to all the users of the app, requests can be sent and once accepted users will be redirected to WhatsApp to plan their game.
 
 ### User Stories
 
-- As a user, I want to find 2 basketball players around my area, so that me and my team can have a full court game
-- As a user, Karim wants to find a team of basketball planning a game, so that he can join them
+- As a user, I want to find 2 basketball players around my area, so that me and my team can have a full court game.
+- As a user, Karim wants to find a team of basketball planning a game, so that he can join them.
 
 <br><br>
 
 <img src="./readme/title3.svg"/>
 
 - This design was done on Figma for fine details.
-- The app follows material guidelines and uses material 3 components which were released alongside Android 12.
-- The app also uses Android 12 material you dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level.
-- To learn more about material you please visit: [Material You dynamic color](https://m3.material.io/styles/color/dynamic-color/overview)
+- The app follows material guidelines and uses material 3 widgets which were released alongside Android 12.
+- The app also uses Android 12 material you dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level. To learn more about material you please visit: [Material You Dynamic Color](https://m3.material.io/styles/color/dynamic-color/overview).
 
 | Landing      | Home/Search |
 | ------------ | ----------- |
@@ -49,7 +48,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 <br><br>
 <img src="./readme/title5.svg"/>
 
-> Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
+> Uing the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
 | Landing | Home/Search |
 | ------- | ----------- |
@@ -75,16 +74,16 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. 
+1.
 2. Clone the repo
    ```sh
    git clone https://github.com/saadbadreddine/sefactory-fsw-final-project.git
    ```
-3. Install NPM packages
+3. 
    ```sh
-   npm install
+   
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
+4. 
+   ```dart
+   
    ```
