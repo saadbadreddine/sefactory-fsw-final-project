@@ -12,9 +12,9 @@
 
 <img src="./readme/title2.svg"/>
 
-> Hustle is a map based LFG app aimed at sports player struggling to find teams or individuals to play with in the areas that they live in.
+> Hustle is a map based LFG app aimed at sports players struggling to find teams or individuals to play with in the areas that they live in.
 >
-> Hustle app lets you drop a marker on the map with a sport category of your choosing, the desired time the game will be held, and an announcement message. This marker is then broadcasted and shown to all the users of the app, requests can be sent and once accepted users will be redirected to WhatsApp to plan their game.
+> Hustle app lets you drop a marker on the map with a sport category of your choosing, the desired time the game will be held, and an announcement message. This marker is then broadcasted and shown to all the users of the app, requests can be sent and once accepted users will be redirected to WhatsApp to further plan their game.
 
 ### User Stories
 
@@ -26,22 +26,22 @@
 <img src="./readme/title3.svg"/>
 
 - This design was done on Figma for fine details.
-- The app follows material guidelines and uses material 3 widgets which were released alongside Android 12.
-- The app also uses Android 12 material you dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level. To learn more about material you please visit: [Material You Dynamic Color](https://m3.material.io/styles/color/dynamic-color/overview) and [Flutter material.io dynamic color package](https://pub.dev/packages/dynamic_color).
+- The app follows material guidelines and uses material 3 widgets which were released alongside Android 12, [Figma Material 3 design kit](https://www.figma.com/community/file/1035203688168086460).
+- The app also uses Android 12 material you dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level. To learn more about material you please visit: [Material You dynamic color](https://m3.material.io/styles/color/dynamic-color/overview) and [Flutter material.io dynamic color package](https://pub.dev/packages/dynamic_color) and [Figma Material theme builder](https://www.figma.com/community/plugin/1034969338659738588/Material-Theme-Builder#:~:text=Dynamic%20color%20is%20an%20algorithmic,scheme%20that's%20accessible%20by%20default.).
 
-| Landing      | Home/Search |
-| ------------ | ----------- |
-| ![Landing]() |
+| Login | Home/Map |
+| ----- | -------- |
+| ![]() |
 
-| Artists results      | Artist's Albums |
-| -------------------- | --------------- |
-| ![Artists results]() |
+| Posts | Requests |
+| ----- | -------- |
+| ![]() |
 
 <br><br>
 
 <img src="./readme/title4.svg"/>
 
-Here's a brief high-level overview of the tech stack the Well app uses:
+Here's a brief high-level overview of the tech stack that Hustle app uses:
 
 - This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
 - This project uses the Gin Web Framework. Gin is a web framework written in [Golang](https://go.dev/). It features a martini-like API with performance that is up to 40 times faster thanks to httprouter.
@@ -56,9 +56,9 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 > Uing the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
-| Landing | Home/Search |
-| ------- | ----------- |
-| ![]()   |
+| Login | Home | Posts | Requests | Profile |
+| ----- | ---- | ----- | -------- | ------- |
+| ![]() |
 
 <br><br>
 <img src="./readme/title6.svg"/>
@@ -80,15 +80,14 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1.
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/saadbadreddine/sefactory-fsw-final-project.git
    ```
-3. ```sh
+2. ```sh
 
    ```
 
-4. ```dart
+3. ```dart
 
    ```
