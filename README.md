@@ -25,10 +25,10 @@
 
 <img src="./readme/title3.svg"/>
 
-> This design was done on Figma for fine details.
-> The app follows material guidelines and uses material 3 components which were released alongside Android 12.
-> The app also uses Android 12 material you dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level.
-> To learn more about material you please visit: https://m3.material.io/styles/color/dynamic-color/overview
+- This design was done on Figma for fine details.
+- The app follows material guidelines and uses material 3 components which were released alongside Android 12.
+- The app also uses Android 12 material you dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level.
+- To learn more about material you please visit: [Material You dynamic color](https://m3.material.io/styles/color/dynamic-color/overview)
 
 | Landing      | Home/Search |
 | ------------ | ----------- |
@@ -65,19 +65,20 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 This is an example of how to list things you need to use the software and how to install them.
 
-- npm
+- Setup Flutter in your environment [Flutter setup](https://docs.flutter.dev/get-started/install)
+- Run the command below in your Flutter directory and install the missing dependencies (Android SDK)
   ```sh
-  npm install npm@latest -g
+  flutter doctor
   ```
 
 ### Installation
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. 
 2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/saadbadreddine/sefactory-fsw-final-project.git
    ```
 3. Install NPM packages
    ```sh
