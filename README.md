@@ -27,7 +27,7 @@
 
 - This design was done on Figma for fine details.
 - The app follows material guidelines and uses material 3 widgets which were released alongside Android 12.
-- The app also uses Android 12 material you dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level. To learn more about material you please visit: [Material You Dynamic Color](https://m3.material.io/styles/color/dynamic-color/overview).
+- The app also uses Android 12 material you dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level. To learn more about material you please visit: [Material You Dynamic Color](https://m3.material.io/styles/color/dynamic-color/overview) and [Flutter material.io dynamic color package](https://pub.dev/packages/dynamic_color).
 
 | Landing      | Home/Search |
 | ------------ | ----------- |
@@ -44,6 +44,8 @@
 Here's a brief high-level overview of the tech stack the Well app uses:
 
 - This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
+- This project uses the [Firebase Cloud FireStore](https://firebase.google.com/docs/firestore). Cloud Firestore is a flexible, scalable database for mobile, web, and server development from Firebase and Google Cloud.
+- This project uses the [Firebase Cloud Messaging](https://firebase.google.com/docs/firestore). Using FCM, you can notify a client app that new email or other data is available to sync. You can send notification messages to drive user re-engagement and retention.
 
 <br><br>
 <img src="./readme/title5.svg"/>
@@ -79,11 +81,10 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    git clone https://github.com/saadbadreddine/sefactory-fsw-final-project.git
    ```
-3. 
-   ```sh
-   
+3. ```sh
+
    ```
-4. 
-   ```dart
-   
+
+4. ```dart
+
    ```
