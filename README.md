@@ -27,15 +27,15 @@
 
 - This design was done on Figma for fine details, using [Figma Material 3 design kit](https://www.figma.com/community/file/1035203688168086460) and [Figma Material theme builder](https://www.figma.com/community/plugin/1034969338659738588/Material-Theme-Builder#:~:text=Dynamic%20color%20is%20an%20algorithmic,scheme%20that's%20accessible%20by%20default.).
 - The app follows material guidelines and uses material 3 widgets which were released alongside Android 12.
-- The app also uses Android 12 material you dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level. To learn more about material you please visit: [Material You dynamic color](https://m3.material.io/styles/color/dynamic-color/overview) and [Flutter material.io dynamic color package](https://pub.dev/packages/dynamic_color).
+- The app also uses Android 12 Material You dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level. To learn more about material you please visit: [Material You dynamic color](https://m3.material.io/styles/color/dynamic-color/overview) and [Flutter material.io dynamic color package](https://pub.dev/packages/dynamic_color).
 
-| Login | Home/Map |
-| ----- | -------- |
-| ![]() |
+  | Login                                                                                     | Home/Map                                                                                  |
+  | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+  | ![](https://drive.google.com/u/1/uc?id=1FW5DzW8rxCH9RSqww0FSdHG5e2VtW9Ql&export=download) | ![](https://drive.google.com/u/1/uc?id=16xAfmlL5PNQ8KP207y_jgyq2aLyzgX4V&export=download) |
 
 | Posts | Requests |
 | ----- | -------- |
-| ![]() |
+| ![]() | ![]()    |
 
 <br><br>
 
@@ -57,9 +57,9 @@ Here's a brief high-level overview of the tech stack that Hustle app uses:
 
 > Using the above mentioned tech stacks and the wireframes built with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app.
 
-| Login | Home | Posts | Requests | Profile |
-| ----- | ---- | ----- | -------- | ------- |
-| ![]() |
+| Login | Home  | Posts | Requests | Profile |
+| ----- | ----- | ----- | -------- | ------- |
+| ![]() | ![]() | ![]() | ![]()    | ![]()   |
 
 <br><br>
 <img src="./readme/title6.svg"/>
@@ -72,7 +72,7 @@ Here's a brief high-level overview of the tech stack that Hustle app uses:
 This is an example of how to list things you need to use the software and how to install them.
 
 - [Setup Flutter in your environment](https://docs.flutter.dev/get-started/install)
-- Run the command below in your Flutter directory and install the missing dependencies if there is any (Android SDK)
+- Run the command below in your Flutter directory and install the missing dependencies if there are any (Android SDK)
   ```sh
   flutter doctor
   ```
