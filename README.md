@@ -56,9 +56,9 @@ Here's a brief high-level overview of the tech stack that Hustle app uses:
 
 > Using the above mentioned tech stacks and the wireframes built with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app.
 
-| Login                                                   | Home                                    | Posts                                   | Requests                                | Profile                                 |
-| ------------------------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| <img src="readme/login.png"  width="321" height="682"/> | <img src=""  width="412" height="892"/> | <img src=""  width="412" height="892"/> | <img src=""  width="321" height="682"/> | <img src=""  width="321" height="682"/> |
+| Login | Home  | Posts | Requests | Profile |
+| ----- | ----- | ----- | -------- | ------- |
+| ![]() | ![]() | ![]() | ![]()    | ![]()   |
 
 | Dynamic Color | Dynamic Color | Dynamic Color |
 | ------------- | ------------- | ------------- |
