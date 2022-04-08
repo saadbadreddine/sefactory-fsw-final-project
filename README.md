@@ -29,9 +29,9 @@
 - The app follows material guidelines and uses material 3 widgets which were released alongside Android 12.
 - The app also uses Android 12 Material You dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level. To learn more about material you please visit: [Material You dynamic color](https://m3.material.io/styles/color/dynamic-color/overview) and [Flutter material.io dynamic color package](https://pub.dev/packages/dynamic_color).
 
-  |                                                                                                                                                                 |                                                                                                                                                               |                                                                                                                                                                       |                                                                                                                                                                    |
-  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | ![](https://firebasestorage.googleapis.com/v0/b/hustle-fsw.appspot.com/o/github-readme-images%2Flogin.png?alt=media&token=c02c61ab-301d-4451-923d-06f552c0df54) | ![](https://firebasestorage.googleapis.com/v0/b/hustle-fsw.appspot.com/o/github-readme-images%2Fmap.png?alt=media&token=bd139757-0803-4ad4-ae8b-722f577fe4c8) | ![](https://firebasestorage.googleapis.com/v0/b/hustle-fsw.appspot.com/o/github-readme-images%2Fpost_on_map.png?alt=media&token=0bd5fcce-ca6a-4887-88de-1ad972fd4ee2) | ![](https://firebasestorage.googleapis.com/v0/b/hustle-fsw.appspot.com/o/github-readme-images%2Fmap_post.png?alt=media&token=32e5da8f-58e5-449e-ad8d-00e11687ff0b) |
+  |                                                                                                                                                                 |                                                                                                                                                               |                                                                                                                                                                        |                                                                                                                                                                    |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | ![](https://firebasestorage.googleapis.com/v0/b/hustle-fsw.appspot.com/o/github-readme-images%2Flogin.png?alt=media&token=c02c61ab-301d-4451-923d-06f552c0df54) | ![](https://firebasestorage.googleapis.com/v0/b/hustle-fsw.appspot.com/o/github-readme-images%2Fmap.png?alt=media&token=bd139757-0803-4ad4-ae8b-722f577fe4c8) | ![](https://firebasestorage.googleapis.com/v0/b/hustle-fsw.appspot.com/o/github-readme-images%2Fmap_add_post.png?alt=media&token=0ed2b155-b474-419f-9fdd-29806443339e) | ![](https://firebasestorage.googleapis.com/v0/b/hustle-fsw.appspot.com/o/github-readme-images%2Fmap_post.png?alt=media&token=32e5da8f-58e5-449e-ad8d-00e11687ff0b) |
 
   |                                                                                                                                                                 |                                                                                                                                                                    |                                                                                                                                                                    |                                                                                                                                                                   |
   | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -56,9 +56,9 @@ Here's a brief high-level overview of the tech stack that Hustle app uses:
 
 > Using the above mentioned tech stacks and the wireframes built with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app.
 
-| Login | Home  | Posts | Requests | Profile |
-| ----- | ----- | ----- | -------- | ------- |
-| ![]() | ![]() | ![]() | ![]()    | ![]()   |
+| Login                                                   | Home                                    | Posts                                   | Requests                                | Profile                                 |
+| ------------------------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| <img src="readme/login.png"  width="321" height="682"/> | <img src=""  width="412" height="892"/> | <img src=""  width="412" height="892"/> | <img src=""  width="321" height="682"/> | <img src=""  width="321" height="682"/> |
 
 | Dynamic Color | Dynamic Color | Dynamic Color |
 | ------------- | ------------- | ------------- |
@@ -84,14 +84,18 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Clone the repo
+1. [Install adb and connect your Android device after turning debugging mode on](https://www.xda-developers.com/install-adb-windows-macos-linux/)
+
+2. Clone the repo
    ```sh
    git clone https://github.com/saadbadreddine/sefactory-fsw-final-project.git
    ```
-2. ```sh
+3. Enter the project's frontend directory
 
+   ```sh
+   cd sefactory-fsw-final-project/frontend
    ```
 
-3. ```dart
+4. ```dart
 
    ```
