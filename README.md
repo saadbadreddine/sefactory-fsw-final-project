@@ -29,9 +29,9 @@
 - The app follows material guidelines and uses material 3 widgets which were released alongside Android 12.
 - The app also uses Android 12 Material You dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level. To learn more about material you please visit: [Material You dynamic color](https://m3.material.io/styles/color/dynamic-color/overview) and [Flutter material.io dynamic color package](https://pub.dev/packages/dynamic_color).
 
-  | Login                                                                                             | Home/Map                                                                                                                     | Posts                                                                                            | Requests |
-  | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | -------- |
-  | <img src="https://drive.google.com/u/1/uc?id=1VRQwp1pl1rGk15SaXqNSiHZzjpYTujl0&export=download"/> | <img src="https://drive.google.com/u/1/uc?id=1FMkGtW7fmXBvzQ4o9FvG1kjCFMp2e4iX&export=download" style="width: 86%;" /> ![]() | <img src="https://drive.google.com/u/1/uc?id=1Ff-ttLUrX6ufo_-jvkTHadC75NlYkrPh&export=download"> | ![]()    |
+  | Login                                                                                             | Home/Map | Posts                                                                                            | Requests |
+  | ------------------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------ | -------- |
+  | <img src="https://drive.google.com/u/1/uc?id=1VRQwp1pl1rGk15SaXqNSiHZzjpYTujl0&export=download"/> |          | <img src="https://drive.google.com/u/1/uc?id=1Ff-ttLUrX6ufo_-jvkTHadC75NlYkrPh&export=download"> | ![]()    |
 
   | Profile | ///   |
   | ------- | ----- |
