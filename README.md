@@ -29,13 +29,13 @@
 - The app follows material guidelines and uses material 3 widgets which were released alongside Android 12.
 - The app also uses Android 12 Material You dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level. To learn more about material you please visit: [Material You dynamic color](https://m3.material.io/styles/color/dynamic-color/overview) and [Flutter material.io dynamic color package](https://pub.dev/packages/dynamic_color).
 
-  | Login                                                                                     | Home/Map                                                                                  |
-  | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-  | ![](https://drive.google.com/u/1/uc?id=1FW5DzW8rxCH9RSqww0FSdHG5e2VtW9Ql&export=download) | ![](https://drive.google.com/u/1/uc?id=16xAfmlL5PNQ8KP207y_jgyq2aLyzgX4V&export=download) |
+  | Login                                                                                                            | Home/Map                                                                                                              | Posts | Requests |
+  | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ----- | -------- |
+  | <img src="https://drive.google.com/u/1/uc?id=1FW5DzW8rxCH9RSqww0FSdHG5e2VtW9Ql&export=download"  height="250" /> | <img src="https://drive.google.com/u/1/uc?id=16xAfmlL5PNQ8KP207y_jgyq2aLyzgX4V&export=download" height="250" /> ![]() | ![]() | ![]()    |
 
-| Posts | Requests |
-| ----- | -------- |
-| ![]() | ![]()    |
+  | Profile | ///   |
+  | ------- | ----- |
+  | ![]()   | ![]() |
 
 <br><br>
 
@@ -60,6 +60,10 @@ Here's a brief high-level overview of the tech stack that Hustle app uses:
 | Login | Home  | Posts | Requests | Profile |
 | ----- | ----- | ----- | -------- | ------- |
 | ![]() | ![]() | ![]() | ![]()    | ![]()   |
+
+| Dynamic Color | Dynamic Color | Dynamic Color |
+| ------------- | ------------- | ------------- |
+| ![]()         | ![]()         | ![]()         |
 
 <br><br>
 <img src="./readme/title6.svg"/>
