@@ -29,9 +29,9 @@
 - The app follows material guidelines and uses material 3 widgets which were released alongside Android 12.
 - The app also uses Android 12 Material You dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level. To learn more about material you please visit: [Material You dynamic color](https://m3.material.io/styles/color/dynamic-color/overview) and [Flutter material.io dynamic color package](https://pub.dev/packages/dynamic_color).
 
-  | Login                                                                                             | Home/Map | Posts                                                                                            | Requests |
-  | ------------------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------ | -------- |
-  | <img src="https://drive.google.com/u/1/uc?id=1VRQwp1pl1rGk15SaXqNSiHZzjpYTujl0&export=download"/> |          | <img src="https://drive.google.com/u/1/uc?id=1Ff-ttLUrX6ufo_-jvkTHadC75NlYkrPh&export=download"> | ![]()    |
+  | Login                                                                                                                                                                   | Home/Map | Posts                                                                                                                                                                  | Requests |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+  | <img src="https://firebasestorage.googleapis.com/v0/b/hustle-fsw.appspot.com/o/github-readme-images%2FLogin.png?alt=media&token=eaa011e2-9fa7-4e25-8c89-43cde6104184"/> |          | <img src="https://firebasestorage.googleapis.com/v0/b/hustle-fsw.appspot.com/o/github-readme-images%2FPosts.png?alt=media&token=781afe9d-b4a4-48c3-ae8c-f4a27740b24b"> | ![]()    |
 
   | Profile | ///   |
   | ------- | ----- |
@@ -49,6 +49,7 @@ Here's a brief high-level overview of the tech stack that Hustle app uses:
 - For RDBMS, this project uses [MySQL](https://www.mysql.com/).
 - For backend shipping and deployment, this project uses [Docker](https://www.docker.com/). Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers.
 - For realtime data streams (Requests Screen), this project uses [Firebase Cloud FireStore](https://firebase.google.com/docs/firestore). Cloud Firestore is a flexible, and scalable cloud-hosted NoSQL database for mobile, web, and server development.
+- For storing user images, this project uses [Firebase Cloud Storage](https://firebase.google.com/docs/storage). Cloud Storage for Firebase is a powerful, simple, and cost-effective object storage service built for Google scale.
 - For push notifications, this project uses [Firebase Cloud Messaging](https://firebase.google.com/docs/firestore). Using FCM, you can notify a client app that new email or other data is available to sync. You can send notification messages to drive user re-engagement and retention.
 - This project uses [Google Maps for Flutter](https://pub.dev/packages/google_maps_flutter) and [Google Maps Platform](https://mapsplatform.google.com/).
 
