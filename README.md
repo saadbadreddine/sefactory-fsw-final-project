@@ -4,13 +4,13 @@
 
 > Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.
 
-**[PROJECT PHILOSOPHY](https://github.com/saadbadreddine/sefactory-fsw-final-project/#-project-philosophy) • [WIREFRAMES](https://github.com/saadbadreddine/sefactory-fsw-final-project#-wireframes) • [TECH STACK](https://github.com/saadbadreddine/sefactory-fsw-final-project#-tech-stack) • [IMPLEMENTATION](https://github.com/saadbadreddine/sefactory-fsw-final-project#-impplementation) • [HOW TO RUN?](https://github.com/saadbadreddine/sefactory-fsw-final-project#-how-to-run)**
+**[PROJECT PHILOSOPHY](#project-philosophy) • [WIREFRAMES](#wireframes) • [TECH STACK](#tech-stack) • [IMPLEMENTATION](#implementation) • [HOW TO RUN?](#how-to-run)**
 
 </div>
 
 <br><br>
 
-<img src="./readme/title2.svg"/>
+<img src="./readme/title2.svg" id="project-philosophy"/>
 
 > Hustle is a map based LFG app aimed at sports players struggling to find teams or individuals to play with in the areas that they live in.
 >
@@ -23,7 +23,7 @@
 
 <br><br>
 
-<img src="./readme/title3.svg"/>
+<img src="./readme/title3.svg" id="wireframes"/>
 
 - This design was done on Figma for fine details, using [Figma Material 3 design kit](https://www.figma.com/community/file/1035203688168086460) and [Figma Material theme builder](https://www.figma.com/community/plugin/1034969338659738588/Material-Theme-Builder#:~:text=Dynamic%20color%20is%20an%20algorithmic,scheme%20that's%20accessible%20by%20default.).
 - The app follows material guidelines and uses material 3 widgets which were released alongside Android 12.
@@ -44,7 +44,7 @@
   </tr>
 </table>
 
-<img src="./readme/title4.svg"/>
+<img src="./readme/title4.svg" id="tech-stack"/>
 
 Here's a brief high-level overview of the tech stack that Hustle app uses:
 
@@ -59,13 +59,13 @@ Here's a brief high-level overview of the tech stack that Hustle app uses:
 - This project uses [Google Maps for Flutter](https://pub.dev/packages/google_maps_flutter) and [Google Maps Platform](https://mapsplatform.google.com/).
 
 <br><br>
-<img src="./readme/title5.svg"/>
+<img src="./readme/title5.svg" id="implementation"/>
 
 > Using the above mentioned tech stacks and the wireframes built with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app.
 
 <table>
   <tr>
-    <td><img src="readme/gif1.gif" /></td>
+    <td><img src="readme/map.gif" /></td>
     <td><img src=""/></td>
     <td><img src=""/></td>
     <td><img src=""/></td>
@@ -79,7 +79,7 @@ Here's a brief high-level overview of the tech stack that Hustle app uses:
 </table>
 
 <br><br>
-<img src="./readme/title6.svg"/>
+<img src="./readme/title6.svg" id="how-to-run"/>
 
 > This is an example of how you may give instructions on setting up your project locally.
 > To get a local copy up and running follow these simple example steps.
@@ -98,8 +98,7 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. [Install adb and connect your Android device after turning debugging mode on](https://www.xda-developers.com/install-adb-windows-macos-linux/)
-
+1. [Install adb and connect your Android device after turning debugging mode on](https://www.xda-developers.com/install-adb-windows-macos-linux/), or create an [Android emulator](https://developer.android.com/studio/run/managing-avds).
 2. Clone the repo
    ```sh
    git clone https://github.com/saadbadreddine/sefactory-fsw-final-project.git
@@ -110,7 +109,7 @@ _Below is an example of how you can instruct your audience on installing and set
    cd sefactory-fsw-final-project/frontend/lib
    ```
 
-4. Run the following command and choose your Android device in the list to get the app running
+4. Run the following command and choose your Android device, or emulator in the list to get the app running
    ```dart
    flutter run
    ```
