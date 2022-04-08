@@ -29,13 +29,20 @@
 - The app follows material guidelines and uses material 3 widgets which were released alongside Android 12.
 - The app also uses Android 12 Material You dynamic color feature. A user-generated scheme is derived from a user’s personal wallpaper selection, then Hustle app will reflect color preferences at the individual device level. To learn more about material you please visit: [Material You dynamic color](https://m3.material.io/styles/color/dynamic-color/overview) and [Flutter material.io dynamic color package](https://pub.dev/packages/dynamic_color).
 
-  |                        |                      |                              |                           |
-  | ---------------------- | -------------------- | ---------------------------- | ------------------------- |
-  | ![](/readme/login.png) | ![](/readme/map.png) | ![](/readme/post_on_map.png) | ![](/readme/map_post.png) |
-
-  |                        |                           |                           |                          |
-  | ---------------------- | ------------------------- | ------------------------- | ------------------------ |
-  | ![](/readme/posts.png) | ![](/readme/my_posts.png) | ![](/readme/requests.png) | ![](/readme/profile.png) |
+<table>
+  <tr>
+    <td><img src="readme/login.png" /></td>
+    <td><img src="readme/map.png"/></td>
+    <td><img src="readme/post_on_map.png"/></td>
+    <td><img src="readme/map_post.png"/></td>
+  </tr>
+  <tr>
+    <td><img src="readme/posts.png" /></td>
+    <td><img src="readme/my_posts.png"/></td>
+    <td><img src="readme/requests.png"/></td>
+    <td><img src="readme/profile.png"/></td>
+  </tr>
+</table>
 
 <img src="./readme/title4.svg"/>
 
@@ -56,13 +63,20 @@ Here's a brief high-level overview of the tech stack that Hustle app uses:
 
 > Using the above mentioned tech stacks and the wireframes built with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app.
 
-| Login | Home  | Posts | Requests | Profile |
-| ----- | ----- | ----- | -------- | ------- |
-| ![]() | ![]() | ![]() | ![]()    | ![]()   |
-
-| Dynamic Color                | Dynamic Color                 | Dynamic Color             |
-| ---------------------------- | ----------------------------- | ------------------------- |
-| ![](/readme/dynamicdark.jpg) | ![](/readme/dynamiclight.jpg) | ![](/readme/dynamic3.jpg) |
+<table>
+  <tr>
+    <td><img src="" /></td>
+    <td><img src=""/></td>
+    <td><img src=""/></td>
+    <td><img src=""/></td>
+    <td><img src="" /></td>
+  </tr>
+  <tr>
+    <td><img src="readme/dynamicdark.jpg"/></td>
+    <td><img src="readme/dynamiclight.jpg"/></td>
+    <td><img src="readme/dynamic3.jpg"/></td>
+  </tr>
+</table>
 
 <br><br>
 <img src="./readme/title6.svg"/>
