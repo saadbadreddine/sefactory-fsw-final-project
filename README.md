@@ -68,7 +68,7 @@ Here's a brief high-level overview of the tech stack that Hustle app uses:
     <td><img src="readme/map.gif" /></td>
     <td><img src="readme/request.gif"/></td>
     <td><img src="readme/profile.jpg"/></td>
-    <td><img src="readme/edit_profile.jpg"/></td>
+    <td><img src="readme/app_edit_profile.jpg"/></td>
   </tr>
   <tr>
     <td><img src="readme/app_login.jpg"/></td>
