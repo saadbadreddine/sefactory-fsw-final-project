@@ -98,7 +98,7 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. [Install adb and connect your Android device after turning debugging mode on](https://www.xda-developers.com/install-adb-windows-macos-linux/), or create an [Android emulator](https://developer.android.com/studio/run/managing-avds).
+1. [Install adb and connect your Android device after turning debugging mode on](https://www.xda-developers.com/install-adb-windows-macos-linux/), or create an [Android emulator](https://developer.android.com/studio/run/managing-avds)
 2. Clone the repo
    ```sh
    git clone https://github.com/saadbadreddine/sefactory-fsw-final-project.git
