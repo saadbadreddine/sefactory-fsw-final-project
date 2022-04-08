@@ -42,7 +42,7 @@
 Here's a brief high-level overview of the tech stack that Hustle app uses:
 
 - This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-- This project uses the [Gin web framework](https://github.com/gin-gonic/gin). Gin is a web framework written in [Golang](https://go.dev/). It features a martini-like API with performance that is up to 40 times faster thanks to httprouter.
+- This project uses the [Gin web framework](https://github.com/gin-gonic/gin). Gin is a web framework written in [Golang](https://go.dev/). It features a [martini-like API](https://github.com/go-martini/martini) with performance that is up to 40 times faster thanks to httprouter.
 - To query and manipulate data from MySQL database, this project uses [GORM](https://gorm.io/). GORM is an ORM library for dealing with relational databases, and is developed on top of database/sql package.
 - For RDBMS, this project uses [MySQL](https://www.mysql.com/).
 - For backend shipping and deployment, this project uses [Docker](https://www.docker.com/). Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers.
@@ -90,12 +90,13 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    git clone https://github.com/saadbadreddine/sefactory-fsw-final-project.git
    ```
-3. Enter the project's frontend directory
+3. Enter the project's lib directory
 
    ```sh
-   cd sefactory-fsw-final-project/frontend
+   cd sefactory-fsw-final-project/frontend/lib
    ```
 
-4. ```dart
-
+4. Run the following command and choose your Android device in the list to get the app running
+   ```dart
+   flutter run
    ```
