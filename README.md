@@ -107,6 +107,6 @@ This is an example of how to list things you need to use the software and how to
    ```
 
 4. Run the following command and choose your Android device, or emulator in the list to get the app running
-   ```dart
+   ```sh
    flutter run
    ```
