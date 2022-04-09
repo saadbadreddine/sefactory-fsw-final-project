@@ -164,11 +164,11 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             const SizedBox(height: 3),
             Text(
-              'Dob: ' + user.dob,
+              'DOB:  ' + user.dob,
               style: const TextStyle(fontSize: 16, height: 1.4),
             ),
             Text(
-              'Phone number: ' + user.phoneNumber,
+              'Phone Number:  ' + user.phoneNumber,
               style: const TextStyle(fontSize: 16, height: 1.4),
             ),
             const SizedBox(height: 30),
