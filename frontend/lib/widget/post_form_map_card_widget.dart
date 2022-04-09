@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hustle_app/api/post_service.dart';
@@ -39,6 +40,12 @@ class PostFormWidgetState extends State<PostFormWidget>
     return menuItems;
   }
 
+  String? selectedValue;
+  List<String> items = [
+    'Basketball',
+    'Football',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -71,16 +78,89 @@ class PostFormWidgetState extends State<PostFormWidget>
               child: Column(
                 children: [
                   const SizedBox(height: 25),
-                  TextFormField(
-                    onChanged: (text) {
-                      postRequest.sportID = 1;
-                    },
-                    decoration: InputDecoration(
-                      labelText: 'Sport',
-                      icon: const Icon(Icons.sports_basketball),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.sports_basketball,
+                        color: Theme.of(context).hintColor,
+                      ),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                      DropdownButtonHideUnderline(
+                        child: DropdownButton2(
+                          isExpanded: true,
+                          hint: Row(
+                            children: const [
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  'Select Sport',
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                          items: items
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: TextStyle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onBackground),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ))
+                              .toList(),
+                          value: selectedValue,
+                          onChanged: (value) {
+                            setState(() {
+                              selectedValue = value as String;
+                              if (selectedValue == "Basketball") {
+                                postRequest.sportID = 1;
+                              } else if (selectedValue == "Football") {
+                                postRequest.sportID = 2;
+                              }
+                            });
+                          },
+                          icon: const Icon(
+                            Icons.arrow_drop_down_outlined,
+                          ),
+                          iconEnabledColor:
+                              Theme.of(context).colorScheme.primary,
+                          iconDisabledColor: Theme.of(context).disabledColor,
+                          buttonHeight: 65,
+                          buttonWidth: 297,
+                          buttonPadding:
+                              const EdgeInsets.only(left: 10, right: 14),
+                          buttonDecoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(14),
+                              border: Border.all(
+                                  color: Theme.of(context).backgroundColor,
+                                  width: 1.2),
+                              color: Theme.of(context).bottomAppBarColor),
+                          itemHeight: 40,
+                          itemPadding:
+                              const EdgeInsets.only(left: 30, right: 14),
+                          dropdownMaxHeight: 200,
+                          dropdownWidth: 250,
+                          dropdownPadding: null,
+                          dropdownDecoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            color: Theme.of(context).colorScheme.surfaceVariant,
+                          ),
+                          dropdownElevation: 8,
+                          scrollbarRadius: const Radius.circular(40),
+                          scrollbarThickness: 6,
+                          scrollbarAlwaysShow: true,
+                          offset: const Offset(5, -3),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
