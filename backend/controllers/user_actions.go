@@ -1,8 +1,11 @@
 package controllers
 
 import (
+	"log"
 	"net/http"
+	"os"
 
+	"github.com/appleboy/go-fcm"
 	"github.com/gin-gonic/gin"
 	"github.com/saadbadreddine/fsw-final-project-backend/models"
 	"github.com/saadbadreddine/fsw-final-project-backend/utils/token"
@@ -144,4 +147,45 @@ func GetMyPosts(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "Success", "data": posts})
+}
+
+type SendNotificationInput struct {
+	ReceiverToken string `json:"receiver_token"`
+	FirstName     string `json:"first_name"`
+	LastName      string `json:"last_name"`
+	Message       string `json:"message"`
+}
+
+func SendNotification(c *gin.Context) {
+
+	var input SendNotificationInput
+
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	msg := &fcm.Message{
+		To: input.ReceiverToken,
+		//Data: map[string]interface{}{
+		//	"foo": "bar",
+		//},
+		Notification: &fcm.Notification{
+			Title: input.FirstName + " " + input.LastName,
+			Body:  input.Message,
+		},
+	}
+
+	// Create a FCM client to send the message.
+	client, err := fcm.NewClient(os.Getenv("FIREBASE_KEY"))
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	// Send the message and receive the response without retries.
+	response, err := client.Send(msg)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	log.Printf("%#v\n", response)
 }
