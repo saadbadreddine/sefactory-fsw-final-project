@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hustle_app/model/notify_model.dart';
 import 'package:hustle_app/utils/storage.dart';
 import 'package:http/http.dart' as http;
 
@@ -16,7 +17,20 @@ class DatabaseService {
   }
 }
 
-sendNotification(receiverToken, firstName, lastName, message) async {
+sendNotification(Notification notification) async {
+  String uri = apiURL + '/api/auth/notify';
+  await http.post(Uri.parse(uri),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $jwtToken',
+      },
+      body: json.encode(notification.toJson()));
+}
+
+
+
+/*sendNotification(receiverToken, firstName, lastName, message) async {
   print(receiverToken);
   await http.post(
     Uri.parse('https://fcm.googleapis.com/fcm/send'),
@@ -39,5 +53,5 @@ sendNotification(receiverToken, firstName, lastName, message) async {
         'to': receiverToken
       },
     ),
-  );
-}
+  ); 
+}*/
