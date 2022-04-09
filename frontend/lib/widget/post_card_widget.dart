@@ -5,6 +5,8 @@ import 'package:hustle_app/api/post_service.dart';
 import 'package:hustle_app/model/post_model.dart';
 import 'package:hustle_app/utils/storage.dart';
 
+import '../model/notify_model.dart' as n;
+
 class PostCard extends StatefulWidget {
   final String firstName;
   final String lastName;
@@ -272,8 +274,13 @@ class _PostCardState extends State<PostCard> {
         'senderPhoneNumber': widget.myPhoneNumber
       });
 
-      await sendNotification(widget.firebaseToken, widget.myFirstName,
-          widget.myLastName, 'Sent you a request');
+      n.Notification notification = n.Notification(
+          firstName: widget.myFirstName!,
+          lastName: widget.myLastName!,
+          message: 'Sent you a request',
+          receiverToken: widget.firebaseToken);
+
+      await sendNotification(notification);
       _isRequested = true;
     }
   }
