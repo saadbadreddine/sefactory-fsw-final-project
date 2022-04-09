@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -35,6 +36,9 @@ class RegisterState extends State<Register> {
 
     return date;
   }
+
+  String? selectedValue;
+  List<String> items = ['Male', 'Female', 'Other'];
 
   @override
   void initState() {
@@ -229,47 +233,86 @@ class RegisterState extends State<Register> {
                                 icon: Icon(Icons.calendar_month)),
                             maxLines: 1,
                           ),
-                          const SizedBox(height: 10),
-                          Row(
-                            children: <Widget>[
-                              Expanded(
-                                flex: 1,
-                                child: _myRadioButton(
-                                    title: "Male",
-                                    value: 0,
-                                    onChanged: (newValue) {
-                                      setState(() => _groupValue = newValue!);
-                                      registerRequest.gender = 'male';
-                                    }),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: _myRadioButton(
-                                    title: "Female",
-                                    value: 1,
-                                    onChanged: (newValue) {
-                                      setState(() => _groupValue = newValue!);
-                                      registerRequest.gender = 'female';
-                                    }),
-                              ),
-                            ],
-                          ),
                           Row(
                             children: [
-                              Expanded(
-                                flex: 1,
-                                child: _myRadioButton(
-                                    title: "Other",
-                                    value: 2,
-                                    onChanged: (newValue) {
-                                      setState(() => _groupValue = newValue!);
-                                      registerRequest.gender = 'other';
-                                    }),
+                              Icon(
+                                Icons.person,
+                                color: Theme.of(context).hintColor,
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              DropdownButton2(
+                                isExpanded: true,
+                                hint: Row(
+                                  children: const [
+                                    SizedBox(
+                                      width: 2,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'Select Gender',
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                items: items
+                                    .map((item) => DropdownMenuItem<String>(
+                                          value: item,
+                                          child: Text(
+                                            item,
+                                            style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .onBackground),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ))
+                                    .toList(),
+                                value: selectedValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedValue = value as String;
+                                    if (selectedValue == "Male") {
+                                      registerRequest.gender = "male";
+                                    } else if (selectedValue == "Female") {
+                                      registerRequest.gender = "female";
+                                    } else if (selectedValue == "Other") {
+                                      registerRequest.gender = "other";
+                                    }
+                                  });
+                                },
+                                icon: const Icon(
+                                  Icons.arrow_drop_down_outlined,
+                                ),
+                                iconEnabledColor:
+                                    Theme.of(context).colorScheme.secondary,
+                                iconDisabledColor:
+                                    Theme.of(context).disabledColor,
+                                buttonHeight: 75,
+                                buttonWidth: 310,
+                                buttonPadding:
+                                    const EdgeInsets.only(left: 0, right: 0),
+                                itemHeight: 40,
+                                itemPadding:
+                                    const EdgeInsets.only(left: 30, right: 14),
+                                dropdownMaxHeight: 200,
+                                dropdownWidth: 200,
+                                dropdownPadding: null,
+                                dropdownElevation: 8,
+                                buttonDecoration: BoxDecoration(
+                                    color: Theme.of(context).canvasColor),
+                                scrollbarRadius: const Radius.circular(40),
+                                scrollbarThickness: 6,
+                                scrollbarAlwaysShow: true,
+                                offset: const Offset(0, 0),
                               ),
                             ],
                           ),
+                          const SizedBox(height: 10),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 30, 0, 70),
+                            padding: const EdgeInsets.fromLTRB(0, 30, 0, 50),
                             child: SizedBox(
                               width: 130,
                               height: 50,
