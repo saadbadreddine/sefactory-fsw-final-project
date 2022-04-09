@@ -120,7 +120,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     decoration: InputDecoration(
                       errorMaxLines: 3,
                       icon: const Icon(Icons.lock),
-                      labelText: 'Password',
+                      labelText: 'Enter New Password',
                       suffixIcon: IconButton(
                         icon: Icon(
                           _isObscure ? Icons.visibility : Icons.visibility_off,
