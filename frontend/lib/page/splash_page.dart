@@ -21,7 +21,7 @@ class _SplashState extends State<Splash> {
   String _tokenString = '';
   u.EditProfileRequest editProfileRequest = u.EditProfileRequest();
   ProfileService profileService = ProfileService();
-  late u.User me;
+  late u.User loggedUser;
 
   @override
   void initState() {
@@ -34,11 +34,11 @@ class _SplashState extends State<Splash> {
               context, MaterialPageRoute(builder: (context) => const Login()));
         } else {
           profileService.getProfile(_tokenString).then((value) {
-            me = u.User.fromJson(value.data);
-            firstName = me.firstName;
-            lastName = me.lastName;
-            phoneNumber = me.phoneNumber;
-            imgURL = me.imageURL;
+            loggedUser = u.User.fromJson(value.data);
+            firstName = loggedUser.firstName;
+            lastName = loggedUser.lastName;
+            phoneNumber = loggedUser.phoneNumber;
+            imgURL = loggedUser.imageURL;
           });
           RefreshTokenService loginService = RefreshTokenService();
           loginService.refresh(_tokenString).then((value) async => {
