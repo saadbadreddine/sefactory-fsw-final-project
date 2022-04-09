@@ -65,7 +65,7 @@ Here's a brief high-level overview of the tech stack that Hustle app uses:
 
 <table>
   <tr>
-    <td><img src="readme/map.gif" /></td>
+    <td><img src="readme/app_map.gif" /></td>
     <td><img src="readme/request.gif"/></td>
     <td><img src="readme/profile.jpg"/></td>
     <td><img src="readme/app_edit_profile.jpg"/></td>
@@ -81,7 +81,6 @@ Here's a brief high-level overview of the tech stack that Hustle app uses:
 <br><br>
 <img src="./readme/title6.svg" id="how-to-run"/>
 
-> This is an example of how you may give instructions on setting up your project locally.
 > To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
@@ -95,8 +94,6 @@ This is an example of how to list things you need to use the software and how to
   ```
 
 ### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
 1. [Install adb and connect your Android device after turning debugging mode on](https://www.xda-developers.com/install-adb-windows-macos-linux/), or create an [Android emulator](https://developer.android.com/studio/run/managing-avds)
 2. Clone the repo
