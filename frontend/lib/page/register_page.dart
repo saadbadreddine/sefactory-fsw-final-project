@@ -40,6 +40,8 @@ class RegisterState extends State<Register> {
   String? selectedValue;
   List<String> items = ['Male', 'Female', 'Other'];
 
+  bool _dropDownIsError = false;
+
   @override
   void initState() {
     super.initState();
@@ -243,6 +245,13 @@ class RegisterState extends State<Register> {
                                 width: 15,
                               ),
                               DropdownButton2(
+                                underline: !_dropDownIsError
+                                    ? Container(
+                                        height: 1,
+                                        color: Theme.of(context).highlightColor)
+                                    : Container(
+                                        height: 1,
+                                        color: Theme.of(context).errorColor),
                                 isExpanded: true,
                                 hint: Row(
                                   children: const [
@@ -273,6 +282,7 @@ class RegisterState extends State<Register> {
                                 value: selectedValue,
                                 onChanged: (value) {
                                   setState(() {
+                                    _dropDownIsError = false;
                                     selectedValue = value as String;
                                     if (selectedValue == "Male") {
                                       registerRequest.gender = "male";
@@ -293,7 +303,7 @@ class RegisterState extends State<Register> {
                                 buttonHeight: 75,
                                 buttonWidth: 310,
                                 buttonPadding:
-                                    const EdgeInsets.only(left: 0, right: 0),
+                                    const EdgeInsets.only(left: 3, right: 0),
                                 itemHeight: 40,
                                 itemPadding:
                                     const EdgeInsets.only(left: 30, right: 14),
@@ -326,7 +336,12 @@ class RegisterState extends State<Register> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
+                                  registerRequest.gender == ''
+                                      ? _dropDownIsError = true
+                                      : _dropDownIsError = false;
+                                  setState(() {});
+                                  if (_formKey.currentState!.validate() &&
+                                      registerRequest.gender != '') {
                                     setState(() {
                                       _formKey.currentState!.save();
                                     });
@@ -357,8 +372,13 @@ class RegisterState extends State<Register> {
                                                             const Duration(
                                                                 milliseconds:
                                                                     1500),
-                                                        content: Text(
-                                                            value.message)),
+                                                        content: registerRequest
+                                                                    .gender !=
+                                                                ''
+                                                            ? Text(
+                                                                value.message)
+                                                            : const Text(
+                                                                'Please enter your gender')),
                                                   )
                                                 }
                                             });
@@ -378,17 +398,4 @@ class RegisterState extends State<Register> {
           ),
         ));
   }
-}
-
-int _groupValue = -1;
-Widget _myRadioButton(
-    {required String title,
-    required int value,
-    required Function(int?) onChanged}) {
-  return RadioListTile(
-    value: value,
-    groupValue: _groupValue,
-    onChanged: onChanged,
-    title: Text(title),
-  );
 }
