@@ -14,25 +14,26 @@ class ProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        alignment: Alignment.center,
-        height: 180,
-        color: Theme.of(context).colorScheme.background,
-        width: MediaQuery.of(context).size.width,
-        child: Stack(
+    return Column(children: [
+      Stack(alignment: Alignment.center, clipBehavior: Clip.none, children: [
+        Container(height: 237, color: Colors.transparent),
+        Positioned(
+          top: 0,
+          child: Container(
             alignment: Alignment.center,
-            clipBehavior: Clip.none,
-            children: [
-              Positioned(child: buildImage(context), top: 85),
-              Positioned(
-                top: 195,
-                right: 140,
-                child: buildEditIcon(context),
-              ),
-            ]),
-      ),
-    );
+            height: 180,
+            color: Theme.of(context).colorScheme.background,
+            width: MediaQuery.of(context).size.width,
+          ),
+        ),
+        Positioned(child: buildImage(context), top: 85),
+        Positioned(
+          top: 195,
+          right: 140,
+          child: buildEditIcon(context),
+        ),
+      ]),
+    ]);
   }
 
   Widget buildImage(BuildContext context) {
