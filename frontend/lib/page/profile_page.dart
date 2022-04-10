@@ -130,7 +130,7 @@ class _ProfilePageState extends State<ProfilePage> {
             },
             isEdit: true,
           ),
-          const SizedBox(height: 65),
+          const SizedBox(height: 10),
           buildName(user),
           const SizedBox(height: 33),
           buildAbout(user)
