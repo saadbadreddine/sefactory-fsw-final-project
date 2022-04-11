@@ -22,8 +22,7 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  final EditProfileRequest _editProfileRequest =
-      EditProfileRequest(aboutMe: " ");
+  final EditProfileRequest _editProfileRequest = EditProfileRequest();
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
   final ImagePicker _picker = ImagePicker();
@@ -155,7 +154,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     initialValue: widget.user.aboutMe,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
-                      if (value == null || value.isEmpty) {
+                      if (_editProfileRequest.aboutMe == null) {
+                        return null;
+                      } else if (value == null || value.isEmpty) {
                         return 'Say something about yourself      (╯°□°)╯︵ ┻━┻ ';
                       } else {
                         return null;
