@@ -82,7 +82,7 @@ class MapState extends State<Map> with WidgetsBindingObserver {
       myMarker.add(Marker(
           markerId: MarkerId(tappedPosition.toString()),
           position: tappedPosition,
-          draggable: true,
+          draggable: false,
           onDragEnd: (dragEndPosition) {},
           icon:
               BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue)));
