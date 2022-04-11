@@ -46,11 +46,15 @@ class PostFormWidgetState extends State<PostFormWidget>
     'Football',
   ];
 
+  bool _dropDownIsError = false;
+
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 5,
-      margin: const EdgeInsets.fromLTRB(20, 100, 20, 200),
+      margin: const EdgeInsets.fromLTRB(20, 90, 20, 190),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30),
       ),
@@ -73,6 +77,7 @@ class PostFormWidgetState extends State<PostFormWidget>
             color: Theme.of(context).colorScheme.onBackground,
           ),
           Form(
+            key: _formKey,
             child: Container(
               constraints: _widthConstraints,
               child: Column(
@@ -119,6 +124,7 @@ class PostFormWidgetState extends State<PostFormWidget>
                           value: selectedValue,
                           onChanged: (value) {
                             setState(() {
+                              _dropDownIsError = false;
                               selectedValue = value as String;
                               if (selectedValue == "Basketball") {
                                 postRequest.sportID = 1;
@@ -140,7 +146,9 @@ class PostFormWidgetState extends State<PostFormWidget>
                           buttonDecoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(14),
                               border: Border.all(
-                                  color: Theme.of(context).backgroundColor,
+                                  color: !_dropDownIsError
+                                      ? Theme.of(context).backgroundColor
+                                      : Theme.of(context).errorColor,
                                   width: 1.2),
                               color: Theme.of(context).bottomAppBarColor),
                           itemHeight: 40,
@@ -151,7 +159,7 @@ class PostFormWidgetState extends State<PostFormWidget>
                           dropdownPadding: null,
                           dropdownDecoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14),
-                            color: Theme.of(context).colorScheme.surfaceVariant,
+                            color: Theme.of(context).cardColor,
                           ),
                           dropdownElevation: 8,
                           scrollbarRadius: const Radius.circular(40),
@@ -164,6 +172,7 @@ class PostFormWidgetState extends State<PostFormWidget>
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     onTap: () async {
                       FocusScope.of(context).requestFocus(FocusNode());
                       await showTimePicker(
@@ -202,6 +211,14 @@ class PostFormWidgetState extends State<PostFormWidget>
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Enter a valid announcement';
+                      } else {
+                        return null;
+                      }
+                    },
                     onChanged: (text) {
                       postRequest.message = text;
                     },
@@ -226,20 +243,29 @@ class PostFormWidgetState extends State<PostFormWidget>
               children: [
                 TextButton(
                   onPressed: () async {
-                    postRequest.lat = widget.lat;
-                    postRequest.long = widget.long;
-                    postService.post(postRequest, jwtToken!).then((value) {
-                      newMarker = Marker(
-                        markerId: MarkerId(value.postID.toString()),
-                        position: LatLng(double.parse(widget.lat),
-                            double.parse(widget.long)),
-                        infoWindow: const InfoWindow(title: ""),
-                        icon: BitmapDescriptor.defaultMarkerWithHue(
-                            BitmapDescriptor.hueViolet),
-                      );
-                      widget.onPostCreated();
-                    });
-                    Navigator.pop(context, 'OK');
+                    postRequest.sportID == 0
+                        ? _dropDownIsError = true
+                        : _dropDownIsError = false;
+                    setState(() {});
+                    if (_formKey.currentState!.validate()) {
+                      setState(() {
+                        _formKey.currentState!.save();
+                      });
+                      postRequest.lat = widget.lat;
+                      postRequest.long = widget.long;
+                      postService.post(postRequest, jwtToken!).then((value) {
+                        newMarker = Marker(
+                          markerId: MarkerId(value.postID.toString()),
+                          position: LatLng(double.parse(widget.lat),
+                              double.parse(widget.long)),
+                          infoWindow: const InfoWindow(title: ""),
+                          icon: BitmapDescriptor.defaultMarkerWithHue(
+                              BitmapDescriptor.hueViolet),
+                        );
+                        widget.onPostCreated();
+                        Navigator.pop(context, 'OK');
+                      });
+                    } else {}
                   },
                   child: const Text(
                     'Post Announcement',
